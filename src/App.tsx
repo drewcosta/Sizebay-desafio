@@ -1,9 +1,10 @@
+import { Modal } from './components/modal'
 import { Container } from './styles'
 
 function App() {
   return (
     <Container>
-      a
+      <Modal />
     </Container>
   )
 }

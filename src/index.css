@@ -1,3 +1,12 @@
+:root{
+  --green-color: #5DE290;
+  --red-color: #E34F4F;
+  --turquesa-color: #4DA6B3;
+  --grey-text-color: #848484;
+  --bg-color: #555555;
+  --bg-modal-color: #FFFFFF;
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -14,5 +23,16 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+h1, h2, h3, h4, h5, h6{
+  color: var(--grey-text-color);
+  letter-spacing: 0;
+}
+
+p, 
+span{
+  color: var(--grey-text-color);
+  letter-spacing: 0;
 }
 
