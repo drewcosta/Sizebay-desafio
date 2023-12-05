@@ -26,10 +26,10 @@ const HeaderModalContainer = styled.header`
   justify-content: space-between;
   align-items: center;
 
-  min-width: 680px;
-  min-height: 79px;
-  max-height: 100%;
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  max-width: 680px;
+  max-height: 79px;
 `
 
 const HeaderDate = styled.div`
@@ -61,6 +61,9 @@ const HeaderDateText = styled.h2`
 const HeaderWeekDay = styled.div``
 
 const HeaderWeekDayText = styled.p`
+  font-size: 24px;
+  font-style: normal;
+  font-weight: normal;
   text-transform: capitalize;
 `
 

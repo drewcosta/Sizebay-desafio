@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { HeaderModal } from "./header-modal";
+import { ProgressBarTasks } from "./modal-progress-bar";
 
 export const Modal = () => {
   return (
     <ModalContainer>
       <HeaderModal />
+      <ProgressBarTasks />
     </ModalContainer>
   );
 }
@@ -14,11 +16,18 @@ const ModalContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 24px;
 
-  width: 800px;
-  height: 650px;
   padding: 54px 60px;
+  width: 100%;
+  height: 100%;
+  max-width: 800px;
+  max-height: 650px;
 
   background: var(--bg-modal-color);
   border-radius: 4px;
+
+  @media (max-width: 425px) {
+    padding: 48px 16px;
+  }
 `
