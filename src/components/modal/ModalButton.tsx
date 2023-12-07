@@ -4,19 +4,20 @@ import styled from "styled-components"
 interface Props {
   icon?: ReactElement;
   onClick?: () => void;
+  background?: string;
 }
 
-export const ModalButton = ({ icon, onClick }: Props) => {
+export const ModalButton = ({ icon, onClick, background }: Props) => {
   return (
-    <ButtonModalContainer onClick={onClick}>
+    <Button onClick={onClick} background={background}>
       {icon}
-    </ButtonModalContainer>
+    </Button>
   )
 }
 
-export const ButtonModalContainer = styled.button`
+export const Button = styled.button<Props>`
   padding: 15px;
-  background: var(--turquesa-color);
+  background: ${(props) => props.background};
   border: none;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;

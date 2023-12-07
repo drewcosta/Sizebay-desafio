@@ -3,7 +3,7 @@ import { formattedDate } from "../../utils/FormatDate";
 
 export const ModalHeader = () => {
   return (
-    <ModalHeaderContainer>
+    <Container>
 
       <HeaderDate>
         <HeaderDateDay>{formattedDate.day}</HeaderDateDay>
@@ -17,11 +17,11 @@ export const ModalHeader = () => {
         <HeaderWeekDayText>{formattedDate.weekday}</HeaderWeekDayText>
       </HeaderWeekDay>
 
-    </ModalHeaderContainer>
+    </Container>
   );
 }
 
-const ModalHeaderContainer = styled.header`
+const Container = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;

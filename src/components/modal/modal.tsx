@@ -1,22 +1,19 @@
 import styled from "styled-components";
-import { ModalInputText } from "./ModalInputText";
-import { ModalProgressBar } from "./ModalProgressBar";
 import { ModalHeader } from "./ModalHeader";
-
+import { ModalProgressBar } from "./ModalProgressBar";
+import { ModalTaskList } from "./ModalTasksList";
 
 export const Modal = () => {
   return (
-    <ModalContainer>
+    <Container>
       <ModalHeader />
       <ModalProgressBar />
-      <ModalInputText 
-        placeholder="Add new task..."
-      />
-    </ModalContainer>
+      <ModalTaskList />
+    </Container>
   );
 }
 
-const ModalContainer = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
