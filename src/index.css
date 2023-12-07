@@ -49,3 +49,7 @@ input{
   color: var(--grey-text-color);
 }
 
+button{
+  background: var(--bg-color);
+}
+

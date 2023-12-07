@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { ReactElement, useState } from "react";
 import { ModalButton } from "./ModalButton";
 import { Task } from "../../types/Task";
+const { v4: uuidv4 } = require('uuid');
 
 interface Props {
   placeholder?: string;
@@ -15,7 +16,7 @@ export const ModalNewTask = ({ placeholder, buttonIcon, createTask }: Props) => 
 
   const handleCreateTask = () => {
     if (createTask && taskValue.trim() !== "") {
-      createTask({ title: taskValue });
+      createTask({ id: uuidv4() , title: taskValue });
       setTaskValue('');
       console.log('Task created');
     }
