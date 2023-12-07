@@ -6,6 +6,8 @@
   --bg-color: #555555;
   --bg-modal-color: #FFFFFF;
   --bg-progress-bar-color: #E4E4E4;
+  --border-input-color: #DBDBDB;
+  --input-disabled-color: #F7F7F8;
 }
 
 *{
@@ -35,5 +37,15 @@ p,
 span{
   color: var(--grey-text-color);
   letter-spacing: 0;
+}
+
+input{
+  color: var(--grey-text-color);
+  border: 1px solid var(--border-input-color);
+  outline: none;
+}
+
+::placeholder{
+  color: var(--grey-text-color);
 }
 

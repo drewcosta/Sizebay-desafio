@@ -1,12 +1,17 @@
 import styled from "styled-components";
-import { HeaderModal } from "./header-modal";
-import { ProgressBarTasks } from "./modal-progress-bar";
+import { ModalInputText } from "./ModalInputText";
+import { ModalProgressBar } from "./ModalProgressBar";
+import { ModalHeader } from "./ModalHeader";
+
 
 export const Modal = () => {
   return (
     <ModalContainer>
-      <HeaderModal />
-      <ProgressBarTasks />
+      <ModalHeader />
+      <ModalProgressBar />
+      <ModalInputText 
+        placeholder="Add new task..."
+      />
     </ModalContainer>
   );
 }

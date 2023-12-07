@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { formattedDate } from "../../utils/format-date";
+import { formattedDate } from "../../utils/FormatDate";
 
-export const HeaderModal = () => {
+export const ModalHeader = () => {
   return (
-    <HeaderModalContainer>
+    <ModalHeaderContainer>
 
       <HeaderDate>
         <HeaderDateDay>{formattedDate.day}</HeaderDateDay>
@@ -17,11 +17,11 @@ export const HeaderModal = () => {
         <HeaderWeekDayText>{formattedDate.weekday}</HeaderWeekDayText>
       </HeaderWeekDay>
 
-    </HeaderModalContainer>
+    </ModalHeaderContainer>
   );
 }
 
-const HeaderModalContainer = styled.header`
+const ModalHeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;

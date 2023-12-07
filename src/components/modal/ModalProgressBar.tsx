@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const ProgressBarTasks = () => {
+export const ModalProgressBar = () => {
   return <ProgressBar />
 }
 
