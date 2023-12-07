@@ -6,14 +6,17 @@ import { ModalTaskItem } from "./ModalTaskItem"
 import { Task } from "../../types/Task"
 
 export const ModalTaskList = () => {
-  const { value: tasks } = useLocalStorage<Task[]>('tasks-list', []);
+  const { value: tasks, updateLocalStorage } = useLocalStorage<Task[]>('tasks-list', []);
 
-  const handleCreateTask = () => {
-    console.log("click add");
+  const handleCreateTask = (newTask: Task) => {
+    const updateTasks = [...tasks, newTask];
+    return updateLocalStorage(updateTasks);
   }
 
   const handleEditTask = () => {}
   const handleRemoveTask = () => {}
+
+  console.log(tasks);
 
   return (
     <TaskListContainer>
@@ -23,7 +26,7 @@ export const ModalTaskList = () => {
         buttonIcon={<FaPlusCircle />}
         createTask={handleCreateTask}
       />
-      
+
       <TasksListContent>
         {tasks.map((task, index) => (
           <ModalTaskItem
@@ -62,6 +65,6 @@ const TasksListContent = styled.div`
   max-width: 680px;
   max-height: 216px;
 
-  overflow: hidden;
+  overflow-y: scroll;
 `
 

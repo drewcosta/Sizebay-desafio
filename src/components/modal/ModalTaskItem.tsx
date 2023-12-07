@@ -11,6 +11,10 @@ interface Props{
 
 export const ModalTaskItem = ({ task, removeTask, editTask }: Props) => {
 
+  const handleRemoveTask = () =>{
+    console.log("Task removed")
+  }
+
   return (
     <Container >
 
@@ -21,7 +25,7 @@ export const ModalTaskItem = ({ task, removeTask, editTask }: Props) => {
 
       <ModalButton 
         icon={<FaMinusCircle />}
-        onClick={removeTask}
+        onClick={handleRemoveTask}
         background="var(--red-color)"
       />
       <ModalButton 

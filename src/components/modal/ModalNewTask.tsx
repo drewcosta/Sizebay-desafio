@@ -3,7 +3,7 @@ import { ReactElement, useState } from "react";
 import { ModalButton } from "./ModalButton";
 import { Task } from "../../types/Task";
 
-interface Props{
+interface Props {
   placeholder?: string;
   buttonIcon?: ReactElement;
   createTask?: (value: Task) => void;
@@ -11,9 +11,7 @@ interface Props{
 
 export const ModalNewTask = ({ placeholder, buttonIcon, createTask }: Props) => {
 
-  const [ taskValue, setTaskValue ] = useState('');
-
-  console.log(taskValue)
+  const [taskValue, setTaskValue] = useState('');
 
   const handleCreateTask = () => {
     if (createTask && taskValue.trim() !== "") {
@@ -33,12 +31,12 @@ export const ModalNewTask = ({ placeholder, buttonIcon, createTask }: Props) => 
         onChange={(e) => setTaskValue(e.target.value)}
       />
 
-      <ModalButton 
+      <ModalButton
         icon={buttonIcon}
         onClick={handleCreateTask}
         background="var(--turquesa-color)"
       />
-        
+
     </Container>
   )
 }
