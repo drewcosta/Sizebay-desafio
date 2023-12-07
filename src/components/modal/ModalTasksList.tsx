@@ -12,9 +12,16 @@ export const ModalTaskList = () => {
     const updateTasks = [...tasks, newTask];
     return updateLocalStorage(updateTasks);
   }
+  
+  const handleEditTask = (editTask: Task) => {
+    const updateTasks = tasks.map(task => task.id === editTask.id ? editTask : task)
+    return updateLocalStorage(updateTasks);
+  }
 
-  const handleEditTask = () => {}
-  const handleRemoveTask = () => {}
+  const handleRemoveTask = (removeTask: Task) => {
+    const updateTasks = tasks.filter(task => task.id !== removeTask.id);
+    return updateLocalStorage(updateTasks);
+  }
 
   console.log(tasks);
 
@@ -65,6 +72,6 @@ const TasksListContent = styled.div`
   max-width: 680px;
   max-height: 216px;
 
-  overflow-y: scroll;
+  overflow-y: auto;
 `
 
