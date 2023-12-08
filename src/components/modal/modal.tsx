@@ -2,12 +2,14 @@ import styled from "styled-components";
 import { ModalHeader } from "./ModalHeader";
 import { ModalProgressBar } from "./ModalProgressBar";
 import { ModalTaskList } from "./ModalTasksList";
+import { ModalFilterBar } from "./ModalFilterBar";
 
 export const Modal = () => {
   return (
     <Container>
       <ModalHeader />
       <ModalProgressBar />
+      <ModalFilterBar />
       <ModalTaskList />
     </Container>
   );
