@@ -2,6 +2,8 @@ import styled from "styled-components"
 import { ReactElement, useState } from "react";
 import { ModalButton } from "./ModalButton";
 import { Task } from "../../types/Task";
+import { TaskStatus } from "../../types/TaskStatus";
+
 const { v4: uuidv4 } = require('uuid');
 
 interface Props {
@@ -16,7 +18,7 @@ export const ModalNewTask = ({ placeholder, buttonIcon, createTask }: Props) => 
 
   const handleCreateTask = () => {
     if (createTask && taskValue.trim() !== "") {
-      createTask({ id: uuidv4() , title: taskValue });
+      createTask({ id: uuidv4(), title: taskValue, status: TaskStatus.Pending });
       setTaskValue('');
       console.log('Task created');
     }
@@ -50,16 +52,21 @@ const Container = styled.div`
   width: 100%;
   max-width: 680px;
   max-height: 48px;
-  `
+`
 
 const InputText = styled.input`
   width: 100%;
   height: 100%;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
   padding: 15px;
+
+  border-radius: 4px 0 0 4px;
+  
   background: var(--input-disabled-color);
   cursor: pointer;
+
+  & + button{
+    border-radius: 0 4px 4px 0;
+  }
 
   &:focus{
     background: var(--bg-modal-color);
