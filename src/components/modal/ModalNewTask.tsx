@@ -38,6 +38,7 @@ export const ModalNewTask = ({ placeholder, buttonIcon, createTask }: Props) => 
         icon={buttonIcon}
         onClick={handleCreateTask}
         background="var(--turquesa-color)"
+        colorIcon="white"
       />
 
     </Container>

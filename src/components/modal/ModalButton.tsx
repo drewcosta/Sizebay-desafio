@@ -5,11 +5,12 @@ interface Props {
   icon?: ReactElement;
   onClick?: () => void;
   background?: string;
+  colorIcon?: string;
 }
 
-export const ModalButton = ({ icon, onClick, background }: Props) => {
+export const ModalButton = ({ icon, onClick, background, colorIcon }: Props) => {
   return (
-    <Button onClick={onClick} background={background}>
+    <Button onClick={onClick} background={background} colorIcon={colorIcon}>
       {icon}
     </Button>
   )
@@ -27,6 +28,6 @@ export const Button = styled.button<Props>`
   }
 
   & > svg{
-    color: white;
+    color: ${(props) => props.colorIcon};
   }
 `

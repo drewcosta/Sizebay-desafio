@@ -55,11 +55,13 @@ export const ModalTaskItem = ({ task, removeTask, editTask, confirmTask }: Props
             icon={<FaMinusCircle />}
             onClick={handleRemoveTask}
             background="var(--red-color)"
+            colorIcon="white"
           />
           <ModalButton
             icon={<FaCheckCircle />}
             onClick={handleConfirmTask}
             background="var(--green-color)"
+            colorIcon="white"
           />
         </>
       )}
