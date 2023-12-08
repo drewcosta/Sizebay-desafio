@@ -51,5 +51,6 @@ input{
 
 button{
   background: var(--bg-color);
+  cursor: pointer;
 }
 
