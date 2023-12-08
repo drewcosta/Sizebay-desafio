@@ -23,6 +23,11 @@ export const ModalTaskList = () => {
     return updateLocalStorage(updateTasks);
   }
 
+  const handleConfirmTask = (confirmTask: Task) => {
+    const updateTasks = tasks.map(task => task.id === confirmTask.id ? confirmTask : task);
+    return updateLocalStorage(updateTasks);
+  }
+
   console.log(tasks);
 
   return (
@@ -39,8 +44,9 @@ export const ModalTaskList = () => {
           <ModalTaskItem
             key={index}
             task={task}
-            editTask={handleEditTask}
             removeTask={handleRemoveTask}
+            editTask={handleEditTask}
+            confirmTask={handleConfirmTask}
           />
         ))}
       </TasksListContent>

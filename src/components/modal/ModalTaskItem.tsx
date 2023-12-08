@@ -3,26 +3,35 @@ import { ModalButton } from "./ModalButton";
 import { FaCheckCircle, FaMinusCircle } from "react-icons/fa";
 import { Task } from "../../types/Task";
 import { useState } from "react";
+import { TaskStatus } from "../../types/TaskStatus";
 
 interface Props {
   task: Task;
   removeTask: (value: Task) => void;
   editTask: (value: Task) => void;
+  confirmTask: (value: Task) => void;
 }
 
-export const ModalTaskItem = ({ task, removeTask, editTask }: Props) => {
+export const ModalTaskItem = ({ task, removeTask, editTask, confirmTask }: Props) => {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [editedTitleTask, setEditedTitleTask] = useState(task.title);
 
   const handleRemoveTask = () => {
-    removeTask(task)
+    removeTask(task);
     console.log("Task removed");
+    setIsInputFocused(false);
   }
 
   const handleEditTask = () => {
-    editTask({ ...task, title: editedTitleTask })
+    editTask({ ...task, title: editedTitleTask });
     console.log("Task edited");
-    setIsInputFocused(false)
+    setIsInputFocused(false);
+  }
+
+  const handleConfirmTask = () => {
+    confirmTask({ ...task, status: TaskStatus.Done })
+    console.log("Task confirmed");
+    setIsInputFocused(false);
   }
 
   return (
@@ -34,20 +43,26 @@ export const ModalTaskItem = ({ task, removeTask, editTask }: Props) => {
         onChange={(e) => setEditedTitleTask(e.target.value)}
         onFocus={() => setIsInputFocused(true)}
       />
+
       <Tooltip showTooltip={isInputFocused} onClick={handleEditTask}>
         Edit task
       </Tooltip>
 
-      <ModalButton
-        icon={<FaMinusCircle />}
-        onClick={handleRemoveTask}
-        background="var(--red-color)"
-      />
-      <ModalButton
-        icon={<FaCheckCircle />}
-        // onClick={}
-        background="var(--green-color)"
-      />
+
+      {isInputFocused && (
+        <>
+          < ModalButton
+            icon={<FaMinusCircle />}
+            onClick={handleRemoveTask}
+            background="var(--red-color)"
+          />
+          <ModalButton
+            icon={<FaCheckCircle />}
+            onClick={handleConfirmTask}
+            background="var(--green-color)"
+          />
+        </>
+      )}
 
     </Container>
   )
@@ -72,17 +87,17 @@ const Container = styled.div`
 const InputText = styled.input`
   width: 100%;
   height: 100%;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
   padding: 15px;
+  
   background: var(--input-disabled-color);
+  border-radius: 4px;
   cursor: pointer;
   z-index: 2;
 
-  &:focus,
-  &:hover{
+  &:focus {
     background: var(--bg-modal-color);
     cursor: text;
+    border-radius: 4px 0 0 4px;
   }
 `
 
@@ -91,11 +106,12 @@ const Tooltip = styled.span<StylesProps>`
   position: absolute;
   top: 80%;
   width: 75px;
+  padding: 5px 0;
+  
   color: #FFFFFF;
   background-color: var(--grey-text-color);
   text-align: center;
   border-radius: 4px;
-  padding: 5px 0;
   z-index: 3;
   cursor: pointer;
 `
