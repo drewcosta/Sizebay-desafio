@@ -2,8 +2,10 @@ import styled from "styled-components";
 import { ModalButton } from "./ModalButton";
 import { FaSearch } from "react-icons/fa";
 import { TaskStatus } from "../../types/TaskStatus";
+import { useFilterTasks } from "../../hooks/useFilterTasks";
 
 export const ModalFilterBar = () => {
+  const { currentStatus, setCurrentStatus } = useFilterTasks();
 
   const TaskStatusValues = Object.values(TaskStatus);
 
@@ -13,7 +15,8 @@ export const ModalFilterBar = () => {
         {TaskStatusValues.map((status, index) =>(
           <FilterTaskStatus
             key={index}
-            checked={false}
+            checked={currentStatus === status}
+            onClick={() => setCurrentStatus(status)}
           >
             {status}
           </FilterTaskStatus>

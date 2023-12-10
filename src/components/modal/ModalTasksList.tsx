@@ -4,15 +4,18 @@ import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { FaPlusCircle } from "react-icons/fa"
 import { ModalTaskItem } from "./ModalTaskItem"
 import { Task } from "../../types/Task"
+import { useFilterTasks } from "../../hooks/useFilterTasks"
+import { ModalNoResults } from "./ModalNoResults"
 
 export const ModalTaskList = () => {
   const { value: tasks, updateLocalStorage } = useLocalStorage<Task[]>('tasks-list', []);
+  const { currentStatus } = useFilterTasks();
 
   const handleCreateTask = (newTask: Task) => {
     const updateTasks = [...tasks, newTask];
     return updateLocalStorage(updateTasks);
   }
-  
+
   const handleEditTask = (editTask: Task) => {
     const updateTasks = tasks.map(task => task.id === editTask.id ? editTask : task)
     return updateLocalStorage(updateTasks);
@@ -28,6 +31,15 @@ export const ModalTaskList = () => {
     return updateLocalStorage(updateTasks);
   }
 
+  const filteredTasksByStatus = (status: string) => {
+    if (!tasks) return [];
+    if (status === '') return tasks;
+
+    return tasks.filter(task => task.status === status);
+  }
+
+  const filteredTasks = filteredTasksByStatus(currentStatus);
+
   console.log(tasks);
 
   return (
@@ -40,15 +52,18 @@ export const ModalTaskList = () => {
       />
 
       <TasksListContent>
-        {tasks.map((task, index) => (
-          <ModalTaskItem
-            key={index}
-            task={task}
-            removeTask={handleRemoveTask}
-            editTask={handleEditTask}
-            confirmTask={handleConfirmTask}
-          />
-        ))}
+        {currentStatus && filteredTasks.length < 1 ? (
+          <ModalNoResults />
+        ) : (
+          filteredTasks.map((task, index) => (
+            <ModalTaskItem
+              key={index}
+              task={task}
+              removeTask={handleRemoveTask}
+              editTask={handleEditTask}
+              confirmTask={handleConfirmTask}
+            />
+          )))}
       </TasksListContent>
 
     </TaskListContainer>

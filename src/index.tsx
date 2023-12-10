@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom'
 import App from './App'
 
 import './index.css'
+import { FilterContextProvider } from './contexts/FilterContext'
 
 const AppContainer = () => {
   return (
     <React.StrictMode>
-      <App />
+      <FilterContextProvider>
+        <App />
+      </FilterContextProvider>
     </React.StrictMode>
   )
 }
