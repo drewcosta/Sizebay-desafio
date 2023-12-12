@@ -5,7 +5,7 @@ import { TaskStatus } from "../../types/TaskStatus";
 import { useFilterTasks } from "../../hooks/useFilterTasks";
 
 export const ModalFilterBar = () => {
-  const { currentStatus, setCurrentStatus } = useFilterTasks();
+  const { currentStatus, setCurrentStatus, searchTask, setSearchTask } = useFilterTasks();
 
   const TaskStatusValues = Object.values(TaskStatus);
 
@@ -28,6 +28,8 @@ export const ModalFilterBar = () => {
         <InputText
           type="text"
           placeholder="Search items..."
+          value={searchTask}
+          onChange={(e) => setSearchTask(e.target.value)}
         />
 
         <ModalButton 

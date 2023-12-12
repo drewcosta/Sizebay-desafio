@@ -3,15 +3,16 @@ import { useFilterTasks } from "../../hooks/useFilterTasks";
 
 export const ModalNoResults = () => {
 
-  const { setCurrentStatus } = useFilterTasks();
+  const { setCurrentStatus, setSearchTask } = useFilterTasks();
 
   function removeFilterStatus(){
-    setCurrentStatus('')
+    setCurrentStatus('');
+    setSearchTask('');
   }
 
   return (
     <Container>
-      <p> Nenhum item encontrado.<span onClick={removeFilterStatus}> Remova o filtro aqui </span>para ver todos os itens.</p>
+      <p> Nenhum item encontrado. <span onClick={removeFilterStatus}>Remova o filtro aqui</span> para ver todos os itens.</p>
     </Container>
   );
 }

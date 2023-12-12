@@ -9,7 +9,7 @@ import { ModalNoResults } from "./ModalNoResults"
 
 export const ModalTaskList = () => {
   const { value: tasks, updateLocalStorage } = useLocalStorage<Task[]>('tasks-list', []);
-  const { currentStatus } = useFilterTasks();
+  const { currentStatus, searchTask } = useFilterTasks();
 
   const handleCreateTask = (newTask: Task) => {
     const updateTasks = [...tasks, newTask];
@@ -40,7 +40,7 @@ export const ModalTaskList = () => {
 
   const filteredTasks = filteredTasksByStatus(currentStatus);
 
-  console.log(tasks);
+  const filteredTasksSearch = filteredTasks.filter(task => task.title.toLocaleLowerCase().includes(searchTask.toLocaleLowerCase()))
 
   return (
     <TaskListContainer>
@@ -52,10 +52,10 @@ export const ModalTaskList = () => {
       />
 
       <TasksListContent>
-        {currentStatus && filteredTasks.length < 1 ? (
+        {currentStatus && filteredTasksSearch.length < 1 ? (
           <ModalNoResults />
         ) : (
-          filteredTasks.map((task, index) => (
+          filteredTasksSearch.map((task, index) => (
             <ModalTaskItem
               key={index}
               task={task}
