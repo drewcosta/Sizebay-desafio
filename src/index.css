@@ -41,7 +41,8 @@ span{
 
 input{
   color: var(--grey-text-color);
-  border: 1px solid var(--border-input-color);
+  border: none;
+  border-radius: inherit;
   outline: none;
 }
 

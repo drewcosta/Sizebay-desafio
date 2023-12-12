@@ -53,6 +53,9 @@ const Container = styled.div`
   width: 100%;
   max-width: 680px;
   max-height: 48px;
+  
+  border: 1px solid var(--border-input-color);
+  border-radius: 4px;
 `
 
 const InputText = styled.input`
