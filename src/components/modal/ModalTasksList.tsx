@@ -41,7 +41,7 @@ export const ModalTaskList = () => {
   }
 
   const filteredTasks = filteredTasksByStatus(currentStatus);
-  const filtertedTasksSearch = filteredTasks.filter(task => task.title.toLocaleLowerCase().includes(searchTask.toLocaleLowerCase()));
+  const filteredTasksSearch = filteredTasks.filter(task => task.title.toLocaleLowerCase().includes(searchTask.toLocaleLowerCase()));
 
   return (
     <TaskListContainer>
@@ -53,10 +53,10 @@ export const ModalTaskList = () => {
       />
 
       <TasksListContent>
-        {currentStatus && filtertedTasksSearch.length < 1 ? (
+        {currentStatus && filteredTasksSearch.length < 1 ? (
           <ModalNoResults />
         ) : (
-          filtertedTasksSearch.map((task, index) => (
+          filteredTasksSearch.map((task, index) => (
             <ModalTaskItem
               key={index}
               task={task}
