@@ -9,17 +9,17 @@ const { v4: uuidv4 } = require('uuid');
 interface Props {
   placeholder?: string;
   buttonIcon?: ReactElement;
-  createTask?: (value: Task) => void;
+  createTask: (value: Task) => void;
 }
 
 export const ModalNewTask = ({ placeholder, buttonIcon, createTask }: Props) => {
 
-  const [taskValue, setTaskValue] = useState('');
+  const [taskTitle, setTaskTitle] = useState('');
 
   const handleCreateTask = () => {
-    if (createTask && taskValue.trim() !== "") {
-      createTask({ id: uuidv4(), title: taskValue, status: TaskStatus.Pending });
-      setTaskValue('');
+    if (taskTitle.trim() !== "") {
+      createTask({ id: uuidv4(), title: taskTitle, status: TaskStatus.Pending });
+      setTaskTitle('');
       console.log('Task created');
     }
   };
@@ -30,8 +30,8 @@ export const ModalNewTask = ({ placeholder, buttonIcon, createTask }: Props) => 
       <InputText
         type="text"
         placeholder={placeholder}
-        value={taskValue}
-        onChange={(e) => setTaskValue(e.target.value)}
+        value={taskTitle}
+        onChange={(e) => setTaskTitle(e.target.value)}
       />
 
       <ModalButton

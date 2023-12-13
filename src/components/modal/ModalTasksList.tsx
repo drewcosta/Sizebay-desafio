@@ -1,16 +1,17 @@
 import styled from "styled-components"
-import { ModalNewTask } from "./ModalNewTask"
-import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { FaPlusCircle } from "react-icons/fa"
+import { ModalNewTask } from "./ModalNewTask"
 import { ModalTaskItem } from "./ModalTaskItem"
-import { Task } from "../../types/Task"
-import { useFilterTasks } from "../../hooks/useFilterTasks"
 import { ModalNoResults } from "./ModalNoResults"
+import { Task } from "../../types/Task"
+import { useLocalStorage } from "../../hooks/useLocalStorage"
+import { useFilterTasks } from "../../hooks/useFilterTasks"
 
 export const ModalTaskList = () => {
   const { value: tasks, updateLocalStorage } = useLocalStorage<Task[]>('tasks-list', []);
   const { currentStatus, searchTask } = useFilterTasks();
 
+  // CRUD
   const handleCreateTask = (newTask: Task) => {
     const updateTasks = [...tasks, newTask];
     return updateLocalStorage(updateTasks);
@@ -31,6 +32,7 @@ export const ModalTaskList = () => {
     return updateLocalStorage(updateTasks);
   }
 
+  // Filters
   const filteredTasksByStatus = (status: string) => {
     if (!tasks) return [];
     if (status === '') return tasks;
@@ -39,8 +41,7 @@ export const ModalTaskList = () => {
   }
 
   const filteredTasks = filteredTasksByStatus(currentStatus);
-
-  const filteredTasksSearch = filteredTasks.filter(task => task.title.toLocaleLowerCase().includes(searchTask.toLocaleLowerCase()))
+  const filtertedTasksSearch = filteredTasks.filter(task => task.title.toLocaleLowerCase().includes(searchTask.toLocaleLowerCase()));
 
   return (
     <TaskListContainer>
@@ -52,10 +53,10 @@ export const ModalTaskList = () => {
       />
 
       <TasksListContent>
-        {currentStatus && filteredTasksSearch.length < 1 ? (
+        {currentStatus && filtertedTasksSearch.length < 1 ? (
           <ModalNoResults />
         ) : (
-          filteredTasksSearch.map((task, index) => (
+          filtertedTasksSearch.map((task, index) => (
             <ModalTaskItem
               key={index}
               task={task}
