@@ -1,8 +1,8 @@
 import styled from "styled-components"
 import { ModalButton } from "./ModalButton";
 import { FaCheckCircle, FaMinusCircle } from "react-icons/fa";
-import { Task } from "../../types/Task";
 import { useState } from "react";
+import { Task } from "../../types/Task";
 import { TaskStatus } from "../../types/TaskStatus";
 
 interface Props {
@@ -35,12 +35,12 @@ export const ModalTaskItem = ({ task, removeTask, editTask, confirmTask }: Props
   }
 
   return (
-    <Container >
+    <Container>
 
       <InputText
         type="text"
-        value={editedTitleTask}
-        onChange={(e) => setEditedTitleTask(e.target.value)}
+        value={task.title} 
+        onChange={(e) => setEditedTitleTask(task.title = e.target.value)}
         onFocus={() => setIsInputFocused(true)}
       />
 
@@ -75,6 +75,7 @@ interface StylesProps {
 }
 
 const Container = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,23 +84,22 @@ const Container = styled.div`
   max-width: 680px;
   max-height: 48px;
 
-  position: relative;
+  border: 1px solid var(--border-input-color);
+  border-radius: 4px;
   `
 
 const InputText = styled.input`
   width: 100%;
   height: 100%;
   padding: 15px;
-  
+
   background: var(--input-disabled-color);
-  border-radius: 4px;
   cursor: pointer;
   z-index: 2;
 
   &:focus {
     background: var(--bg-modal-color);
     cursor: text;
-    border-radius: 4px 0 0 4px;
   }
 `
 
