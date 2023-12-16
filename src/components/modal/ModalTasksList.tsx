@@ -3,34 +3,12 @@ import { FaPlusCircle } from "react-icons/fa"
 import { ModalNewTask } from "./ModalNewTask"
 import { ModalTaskItem } from "./ModalTaskItem"
 import { ModalNoResults } from "./ModalNoResults"
-import { Task } from "../../types/Task"
-import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { useFilterTasks } from "../../hooks/useFilterTasks"
+import { useCrud } from "../../hooks/useTaskCrud"
 
 export const ModalTaskList = () => {
-  const { value: tasks, updateLocalStorage } = useLocalStorage<Task[]>('tasks-list', []);
   const { currentStatus, searchTask } = useFilterTasks();
-
-  // CRUD
-  const handleCreateTask = (newTask: Task) => {
-    const updateTasks = [...tasks, newTask];
-    return updateLocalStorage(updateTasks);
-  }
-
-  const handleEditTask = (editTask: Task) => {
-    const updateTasks = tasks.map(task => task.id === editTask.id ? editTask : task)
-    return updateLocalStorage(updateTasks);
-  }
-
-  const handleRemoveTask = (removeTask: Task) => {
-    const updateTasks = tasks.filter(task => task.id !== removeTask.id);
-    return updateLocalStorage(updateTasks);
-  }
-
-  const handleConfirmTask = (confirmTask: Task) => {
-    const updateTasks = tasks.map(task => task.id === confirmTask.id ? confirmTask : task);
-    return updateLocalStorage(updateTasks);
-  }
+  const { tasks, handleCreateTask, handleEditTask, handleRemoveTask, handleConfirmTask } = useCrud();
 
   // Filters
   const filteredTasksByStatus = (status: string) => {
@@ -85,7 +63,7 @@ const TaskListContainer = styled.div`
 const TasksListContent = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;  
   gap: 8px;
 

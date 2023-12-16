@@ -27,10 +27,10 @@ const Container = styled.div`
   height: 100%;
   max-width: 800px;
   max-height: 650px;
-
+  
   background: var(--bg-modal-color);
   border-radius: 4px;
-
+  
   @media (max-width: 425px) {
     padding: 48px 16px;
   }

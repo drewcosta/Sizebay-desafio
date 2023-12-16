@@ -21,7 +21,6 @@ export const ModalFilterBar = () => {
             {status}
           </FilterTaskStatus>
         ))}
-    
       </FilterTask>
 
       <SearchTask>
@@ -57,6 +56,12 @@ const Container = styled.div`
   height: 100%;
   max-width: 680px;
   max-height: 40px;
+
+  /* @media (max-width: 425px){
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 10px;
+  } */
 `
 
 const FilterTask = styled.ul`

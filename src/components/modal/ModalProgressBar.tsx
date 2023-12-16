@@ -1,20 +1,17 @@
 import styled from "styled-components"
-import { useLocalStorage } from "../../hooks/useLocalStorage"
-import { Task } from "../../types/Task";
 import { useEffect, useState } from "react";
+import { useCrud } from "../../hooks/useTaskCrud";
 
 export const ModalProgressBar = () => {
-  const { value: tasks, updateLocalStorage } = useLocalStorage<Task[]>('tasks-list', []);
-  const [progressPercentage, setProgressPercentage] = useState(0)
-  console.log("Current tasks:", tasks);
+  const { tasks } = useCrud();
+  const [progressPercentage, setProgressPercentage] = useState(0);
 
   useEffect(() => {
-    console.log("useEffect is running");
     const tasksDone = tasks.filter(task => task.status === 'done');
-    const progressPercentage = tasksDone.length > 0 ? (tasksDone.length / tasks.length) * 100 : 0;
-    setProgressPercentage(progressPercentage)
-  }, [tasks])
-
+    const newProgressPercentage = tasks.length > 0 ? (tasksDone.length / tasks.length) * 100 : 0;
+    setProgressPercentage(newProgressPercentage);
+  }, [tasks, progressPercentage]);
+  
   console.log(progressPercentage);
 
   return (
