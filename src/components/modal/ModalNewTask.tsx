@@ -25,7 +25,7 @@ export const ModalNewTask = ({ placeholder, buttonIcon, createTask }: Props) => 
   };
 
   return (
-    <Container >
+    <Container>
 
       <InputText
         type="text"
@@ -67,7 +67,7 @@ const InputText = styled.input`
   
   background: var(--input-disabled-color);
   cursor: pointer;
-
+  
   & + button{
     border-radius: 0 4px 4px 0;
   }

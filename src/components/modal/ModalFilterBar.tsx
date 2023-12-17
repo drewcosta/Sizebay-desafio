@@ -6,14 +6,14 @@ import { TaskStatus } from "../../types/TaskStatus";
 import { useFilterTasks } from "../../hooks/useFilterTasks";
 
 export const ModalFilterBar = () => {
-  const { currentStatus, setCurrentStatus, searchTask, setSearchTask } = useFilterTasks();
-
-  const TaskStatusValues = Object.values(TaskStatus);
+  const { currentStatus, setCurrentStatus, searchTask, setSearchTask, removeFilters } = useFilterTasks();
   
+  const TaskStatusValues = Object.values(TaskStatus);
+
   return (
     <Container>
       <FilterTask>
-        {TaskStatusValues.map((status, index) =>(
+        {TaskStatusValues.map((status, index) => (
           <FilterTaskStatus
             key={index}
             checked={currentStatus === status}
@@ -32,11 +32,11 @@ export const ModalFilterBar = () => {
           onChange={(e) => setSearchTask(e.target.value)}
         />
 
-        <ModalButton 
+        <ModalButton
           icon={searchTask ? <IoMdClose /> : <FaSearch />}
           background="var(--bg-modal-background)"
           colorIcon="var(--grey-text-color)"
-          onClick={() => searchTask && setSearchTask('')}
+          onClick={() => searchTask && removeFilters()}
         />
       </SearchTask>
 
@@ -44,7 +44,7 @@ export const ModalFilterBar = () => {
   )
 }
 
-interface PropsStyles{
+interface PropsStyles {
   checked: boolean;
 }
 

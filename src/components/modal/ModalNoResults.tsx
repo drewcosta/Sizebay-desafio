@@ -2,17 +2,11 @@ import styled from "styled-components";
 import { useFilterTasks } from "../../hooks/useFilterTasks";
 
 export const ModalNoResults = () => {
-
-  const { setCurrentStatus, setSearchTask } = useFilterTasks();
-
-  function removeFilterStatus(){
-    setCurrentStatus('');
-    setSearchTask('');
-  }
+  const { removeFilters } = useFilterTasks();
 
   return (
     <Container>
-      <p> Nenhum item encontrado. <span onClick={removeFilterStatus}>Remova o filtro aqui</span> para ver todos os itens.</p>
+      <p> Nenhum item encontrado. <span onClick={removeFilters}>Remova o filtro aqui</span> para ver todos os itens.</p>
     </Container>
   );
 }
