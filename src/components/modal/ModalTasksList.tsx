@@ -68,7 +68,7 @@ const TasksListContent = styled.div`
   gap: 8px;
 
   width: 100%;
-  height: 100%;
+  height: 216px;
   max-width: 680px;
   max-height: 216px;
 

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { ModalButton } from "./ModalButton";
 import { FaSearch } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 import { TaskStatus } from "../../types/TaskStatus";
 import { useFilterTasks } from "../../hooks/useFilterTasks";
 
@@ -8,7 +9,7 @@ export const ModalFilterBar = () => {
   const { currentStatus, setCurrentStatus, searchTask, setSearchTask } = useFilterTasks();
 
   const TaskStatusValues = Object.values(TaskStatus);
-
+  
   return (
     <Container>
       <FilterTask>
@@ -32,9 +33,10 @@ export const ModalFilterBar = () => {
         />
 
         <ModalButton 
-          icon={<FaSearch />}
+          icon={searchTask ? <IoMdClose /> : <FaSearch />}
           background="var(--bg-modal-background)"
           colorIcon="var(--grey-text-color)"
+          onClick={() => searchTask && setSearchTask('')}
         />
       </SearchTask>
 
