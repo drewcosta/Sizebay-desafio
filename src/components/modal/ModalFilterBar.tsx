@@ -55,13 +55,12 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   max-width: 680px;
-  max-height: 40px;
 
-  /* @media (max-width: 425px){
+  @media (max-width: 425px){
     flex-direction: column-reverse;
     align-items: flex-end;
     gap: 10px;
-  } */
+  }
 `
 
 const FilterTask = styled.ul`
@@ -100,6 +99,7 @@ const InputText = styled.input`
   width: 100%;
   height: 100%;
   max-width: 450px;
+  max-height: 48px;
   
   background: var(--bg-modal-color);
   border-radius: 4px;

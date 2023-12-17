@@ -22,7 +22,7 @@ const Container = styled.div`
   align-items: center;
   gap: 24px;
 
-  padding: 54px 60px;
+  padding: 20px 60px;
   width: 100%;
   height: 100%;
   max-width: 800px;
@@ -32,6 +32,6 @@ const Container = styled.div`
   border-radius: 4px;
   
   @media (max-width: 425px) {
-    padding: 48px 16px;
+    padding: 16px 18px;
   }
 `
