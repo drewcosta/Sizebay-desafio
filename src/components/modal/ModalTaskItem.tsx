@@ -1,98 +1,108 @@
-import styled from "styled-components"
+import React, { useState, useRef, useEffect } from "react";
+import styled from "styled-components";
 import { ModalButton } from "./ModalButton";
 import { FaCheckCircle, FaMinusCircle } from "react-icons/fa";
-import { useState } from "react";
 import { Task } from "../../types/Task";
 import { TaskStatus } from "../../types/TaskStatus";
 
 interface Props {
   task: Task;
-  removeTask: (value: Task) => void;
+  deleteTask: (value: Task) => void;
   editTask: (value: Task) => void;
   confirmTask: (value: Task) => void;
 }
 
-export const ModalTaskItem = ({ task, removeTask, editTask, confirmTask }: Props) => {
+export const ModalTaskItem = ({ task, deleteTask, editTask, confirmTask }: Props) => {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [editedTitleTask, setEditedTitleTask] = useState(task.title);
+  const taskRef = useRef(null);
 
-  const handleRemoveTask = () => {
-    removeTask(task);
-    console.log("Task removed");
+
+  // CRUD -> update and delete operations
+  const handleDeleteTask = () => {
+    deleteTask(task);
+    console.log("Task deleted");
     setIsInputFocused(false);
-  }
+  };
 
   const handleEditTask = () => {
     editTask({ ...task, title: editedTitleTask });
     console.log("Task edited");
     setIsInputFocused(false);
-  }
+  };
 
   const handleConfirmTask = () => {
-    confirmTask({ ...task, status: TaskStatus.Done })
+    confirmTask({ ...task, status: TaskStatus.Done });
     console.log("Task confirmed");
     setIsInputFocused(false);
-  }
+  };
+
+  // Change the focus of the current task
+  const handleFocusTask = (event: MouseEvent) => {
+    setIsInputFocused(true);
+
+    if (taskRef.current && !(taskRef.current as HTMLDivElement).contains(event.target as Node)) {
+      setIsInputFocused(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleFocusTask);
+
+    return () => {
+      document.removeEventListener("mousedown", handleFocusTask);
+    };
+  }, []);
 
   return (
-    <Container>
+    <Container ref={taskRef}>
+        <InputText
+          type="text"
+          value={task.title}
+          onChange={(e) => setEditedTitleTask(task.title = e.target.value)}
+        />
 
-      <InputText
-        type="text"
-        value={task.title} 
-        onChange={(e) => setEditedTitleTask(task.title = e.target.value)}
-        onFocus={() => setIsInputFocused(true)}
-      />
+        {isInputFocused && (
+          <>
+            <Tooltip onClick={handleEditTask}>
+              Edit task
+            </Tooltip>
 
-      <Tooltip showTooltip={isInputFocused} onClick={handleEditTask}>
-        Edit task
-      </Tooltip>
-
-
-      {isInputFocused && (
-        <>
-          < ModalButton
-            icon={<FaMinusCircle />}
-            onClick={handleRemoveTask}
-            background="var(--red-color)"
-            colorIcon="white"
-          />
-          <ModalButton
-            icon={<FaCheckCircle />}
-            onClick={handleConfirmTask}
-            background="var(--green-color)"
-            colorIcon="white"
-          />
-        </>
-      )}
-
+            <ModalButton
+              icon={<FaMinusCircle />}
+              onClick={handleDeleteTask}
+              background="var(--red-color)"
+              colorIcon="white"
+            />
+            <ModalButton
+              icon={<FaCheckCircle />}
+              onClick={handleConfirmTask}
+              background="var(--green-color)"
+              colorIcon="white"
+            />
+          </>
+        )}
     </Container>
-  )
-}
+  );
+};
 
-interface StylesProps {
-  showTooltip: boolean
-}
 
 const Container = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-
   width: 100%;
   max-width: 680px;
   max-height: 48px;
-
   border: 1px solid var(--border-input-color);
   border-radius: 4px;
-  `
+`;
 
 const InputText = styled.input`
   width: 100%;
   height: 100%;
   padding: 15px;
-
   background: var(--input-disabled-color);
   cursor: pointer;
   z-index: 2;
@@ -101,20 +111,18 @@ const InputText = styled.input`
     background: var(--bg-modal-color);
     cursor: text;
   }
-`
+`;
 
-const Tooltip = styled.span<StylesProps>`
-  display: ${(props) => (props.showTooltip ? "inline-block" : "none")};
+const Tooltip = styled.span`
+  display: block;
   position: absolute;
   top: 80%;
   width: 75px;
   padding: 5px 0;
-  
-  color: #FFFFFF;
+  color: #ffffff;
   background-color: var(--grey-text-color);
   text-align: center;
   border-radius: 4px;
   z-index: 3;
   cursor: pointer;
-`
-
+`;
