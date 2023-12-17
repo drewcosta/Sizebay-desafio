@@ -10,7 +10,6 @@ export const ModalTaskList = () => {
   const { currentStatus, searchTask } = useFilterTasks();
   const { tasks, handleCreateTask, handleEditTask, handleRemoveTask, handleConfirmTask } = useCrud();
 
-  // Filters
   const filteredTasksByStatus = (status: string) => {
     if (!tasks) return [];
     if (status === '') return tasks;
@@ -31,7 +30,7 @@ export const ModalTaskList = () => {
       />
 
       <TasksListContent>
-        {currentStatus && filteredTasksSearch.length < 1 ? (
+        {(searchTask || currentStatus) && filteredTasksSearch.length < 1 ? (
           <ModalNoResults />
         ) : (
           filteredTasksSearch.map((task, index) => (
