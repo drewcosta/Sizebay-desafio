@@ -17,23 +17,18 @@ export const ModalTaskItem = ({ task, deleteTask, editTask, confirmTask }: Props
   const [editedTitleTask, setEditedTitleTask] = useState(task.title);
   const taskRef = useRef(null);
 
-
   // CRUD -> update and delete operations
   const handleDeleteTask = () => {
     deleteTask(task);
-    console.log("Task deleted");
-    setIsInputFocused(false);
   };
 
   const handleEditTask = () => {
     editTask({ ...task, title: editedTitleTask });
-    console.log("Task edited");
     setIsInputFocused(false);
   };
 
   const handleConfirmTask = () => {
     confirmTask({ ...task, status: TaskStatus.Done });
-    console.log("Task confirmed");
     setIsInputFocused(false);
   };
 
