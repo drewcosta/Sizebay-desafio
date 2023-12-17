@@ -14,8 +14,8 @@ export const useCrud = () => {
     return updateLocalStorage(updateTasks);
   }
 
-  const handleRemoveTask = (removeTask: Task) => {
-    const updateTasks = tasks.filter(task => task.id !== removeTask.id);
+  const handleDeleteTask = (deleteTask: Task) => {
+    const updateTasks = tasks.filter(task => task.id !== deleteTask.id);
     return updateLocalStorage(updateTasks);
   }
 
@@ -28,7 +28,7 @@ export const useCrud = () => {
     tasks,
     handleCreateTask,
     handleEditTask,
-    handleRemoveTask, 
+    handleDeleteTask, 
     handleConfirmTask
   }
 

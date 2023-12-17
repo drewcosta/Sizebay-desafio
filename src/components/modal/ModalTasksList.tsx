@@ -8,7 +8,7 @@ import { useCrud } from "../../hooks/useTaskCrud"
 
 export const ModalTaskList = () => {
   const { currentStatus, searchTask } = useFilterTasks();
-  const { tasks, handleCreateTask, handleEditTask, handleRemoveTask, handleConfirmTask } = useCrud();
+  const { tasks, handleCreateTask, handleEditTask, handleDeleteTask, handleConfirmTask } = useCrud();
 
   const filteredTasksByStatus = (status: string) => {
     if (!tasks) return [];
@@ -37,7 +37,7 @@ export const ModalTaskList = () => {
             <ModalTaskItem
               key={index}
               task={task}
-              removeTask={handleRemoveTask}
+              deleteTask={handleDeleteTask}
               editTask={handleEditTask}
               confirmTask={handleConfirmTask}
             />
