@@ -1,11 +1,9 @@
 import { ReactElement } from "react";
 import styled from "styled-components"
 
-interface Props {
+interface Props extends StylesProps{
   icon?: ReactElement;
   onClick?: () => void;
-  background?: string;
-  colorIcon?: string;
 }
 
 export const ModalButton = ({ icon, onClick, background, colorIcon }: Props) => {
@@ -16,7 +14,12 @@ export const ModalButton = ({ icon, onClick, background, colorIcon }: Props) => 
   )
 }
 
-export const Button = styled.button<Props>`
+interface StylesProps {
+  background?: string;
+  colorIcon?: string;
+}
+
+export const Button = styled.button<StylesProps>`
   padding: 15px;
   background: ${(props) => props.background};
   border: none;

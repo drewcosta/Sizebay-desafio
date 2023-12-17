@@ -8,4 +8,8 @@ export const Container = styled.main`
   min-height: 100vh;
 
   background: var(--bg-color);
+
+  @media (min-width: 768px){
+    padding: 0 16px;
+  }
 `
