@@ -4,19 +4,14 @@ import { formattedDate } from "../../utils/FormatDate";
 export const ModalHeader = () => {
   return (
     <Container>
-
-      <HeaderDate>
-        <HeaderDateDay>{formattedDate.day}</HeaderDateDay>
-        <HeaderDateText>
+      <DateDatails>
+        <Day>{formattedDate.day}</Day>
+        <DateMonthYear>
           <span>{formattedDate.month}</span>
           <span>{formattedDate.year}</span>
-        </HeaderDateText>
-      </HeaderDate>
-
-      <HeaderWeekDay>
-        <HeaderWeekDayText>{formattedDate.weekday}</HeaderWeekDayText>
-      </HeaderWeekDay>
-
+        </DateMonthYear>
+      </DateDatails>
+      <WeekDay>{formattedDate.weekday}</WeekDay>
     </Container>
   );
 }
@@ -32,18 +27,18 @@ const Container = styled.header`
   max-height: 79px;
 `
 
-const HeaderDate = styled.div`
+const DateDatails = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 `
 
-const HeaderDateDay = styled.h1`
+const Day = styled.h1`
   font-size: 60px;
 `
 
-const HeaderDateText = styled.h2`
+const DateMonthYear = styled.h2`
   display: flex;
   flex-direction: column;
 
@@ -58,9 +53,7 @@ const HeaderDateText = styled.h2`
   }
 `
 
-const HeaderWeekDay = styled.div``
-
-const HeaderWeekDayText = styled.p`
+const WeekDay = styled.p`
   font-size: 24px;
   font-style: normal;
   font-weight: normal;
