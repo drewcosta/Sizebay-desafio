@@ -9,7 +9,7 @@ export const Container = styled.main`
 
   background: var(--bg-color);
 
-  @media (min-width: 768px){
-    padding: 0 16px;
+  @media (max-width: 768px){
+    padding: 16px 18px;
   }
 `
