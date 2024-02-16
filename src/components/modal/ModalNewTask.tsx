@@ -20,7 +20,6 @@ export const ModalNewTask = ({ placeholder, buttonIcon, createTask }: Props) => 
     if (taskTitle.trim() !== "") {
       createTask({ id: uuidv4(), title: taskTitle, status: TaskStatus.Pending });
       setTaskTitle('');
-      console.log('Task created');
     }
   };
 
