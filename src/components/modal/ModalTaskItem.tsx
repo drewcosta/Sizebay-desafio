@@ -17,7 +17,6 @@ export const ModalTaskItem = ({ task, deleteTask, editTask, confirmTask }: Props
   const [editedTitleTask, setEditedTitleTask] = useState(task.title);
   const taskRef = useRef(null);
 
-  // CRUD -> update and delete operations
   const handleDeleteTask = () => {
     deleteTask(task);
   };
@@ -32,8 +31,7 @@ export const ModalTaskItem = ({ task, deleteTask, editTask, confirmTask }: Props
     setIsInputFocused(false);
   };
 
-  // Change the focus of the current task
-  const handleFocusTask = (event: MouseEvent) => {
+  const handleTaskFocus = (event: MouseEvent) => {
     setIsInputFocused(true);
 
     if (taskRef.current && !(taskRef.current as HTMLDivElement).contains(event.target as Node)) {
@@ -42,10 +40,10 @@ export const ModalTaskItem = ({ task, deleteTask, editTask, confirmTask }: Props
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleFocusTask);
+    document.addEventListener("mousedown", handleTaskFocus);
 
     return () => {
-      document.removeEventListener("mousedown", handleFocusTask);
+      document.removeEventListener("mousedown", handleTaskFocus);
     };
   }, []);
 
@@ -66,7 +64,7 @@ export const ModalTaskItem = ({ task, deleteTask, editTask, confirmTask }: Props
             <ModalButton
               icon={<FaMinusCircle />}
               onClick={handleDeleteTask}
-              background="var(--red-color)"
+              background="var(--red-color)"                                           
               colorIcon="white"
             />
             <ModalButton
