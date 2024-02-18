@@ -3,6 +3,7 @@ import { ReactElement, useState } from "react";
 import { ModalButton } from "./ModalButton";
 import { Task } from "../../types/Task";
 import { TaskStatus } from "../../types/TaskStatus";
+import { toast } from "sonner";
 
 const { v4: uuidv4 } = require('uuid');
 
@@ -20,6 +21,9 @@ export const ModalNewTask = ({ placeholder, buttonIcon, createTask }: Props) => 
     if (taskTitle.trim() !== "") {
       createTask({ id: uuidv4(), title: taskTitle, status: TaskStatus.Pending });
       setTaskTitle('');
+      toast.success('Tarefa criada com sucesso!');
+    }else{
+      toast.error('Digite um título para a sua tarefa!');
     }
   };
 

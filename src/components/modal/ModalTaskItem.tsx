@@ -4,6 +4,7 @@ import { ModalButton } from "./ModalButton";
 import { FaCheckCircle, FaMinusCircle } from "react-icons/fa";
 import { Task } from "../../types/Task";
 import { TaskStatus } from "../../types/TaskStatus";
+import { toast } from "sonner";
 
 interface Props {
   task: Task;
@@ -19,16 +20,20 @@ export const ModalTaskItem = ({ task, deleteTask, editTask, confirmTask }: Props
 
   const handleDeleteTask = () => {
     deleteTask(task);
+    toast.success('Tarefa removida!');
   };
 
   const handleEditTask = () => {
+    if (editedTitleTask.trim() === '') return toast.error('Digite um título para a sua tarefa!');
     editTask({ ...task, title: editedTitleTask });
     setIsInputFocused(false);
   };
 
   const handleConfirmTask = () => {
+    if (editedTitleTask.trim() === '') return toast.error('Digite um título para a sua tarefa!');
     confirmTask({ ...task, status: TaskStatus.Done });
     setIsInputFocused(false);
+    toast.success('Tarefa concluída!');
   };
 
   const handleTaskFocus = (event: MouseEvent) => {
@@ -49,32 +54,32 @@ export const ModalTaskItem = ({ task, deleteTask, editTask, confirmTask }: Props
 
   return (
     <Container ref={taskRef}>
-        <InputText
-          type="text"
-          value={task.title}
-          onChange={(e) => setEditedTitleTask(task.title = e.target.value)}
-        />
+      <InputText
+        type="text"
+        value={task.title}
+        onChange={(e) => setEditedTitleTask(task.title = e.target.value)}
+      />
 
-        {isInputFocused && (
-          <>
-            <Tooltip onClick={handleEditTask}>
-              Edit task
-            </Tooltip>
+      {isInputFocused && (
+        <>
+          <Tooltip onClick={handleEditTask}>
+            Edit task
+          </Tooltip>
 
-            <ModalButton
-              icon={<FaMinusCircle />}
-              onClick={handleDeleteTask}
-              background="var(--red-color)"                                           
-              colorIcon="white"
-            />
-            <ModalButton
-              icon={<FaCheckCircle />}
-              onClick={handleConfirmTask}
-              background="var(--green-color)"
-              colorIcon="white"
-            />
-          </>
-        )}
+          <ModalButton
+            icon={<FaMinusCircle />}
+            onClick={handleDeleteTask}
+            background="var(--red-color)"
+            colorIcon="white"
+          />
+          <ModalButton
+            icon={<FaCheckCircle />}
+            onClick={handleConfirmTask}
+            background="var(--green-color)"
+            colorIcon="white"
+          />
+        </>
+      )}
     </Container>
   );
 };
