@@ -1,16 +1,27 @@
 import styled from "styled-components";
+
 import { ModalHeader } from "./ModalHeader";
 import { ModalProgressBar } from "./ModalProgressBar";
 import { ModalTaskList } from "./ModalTasksList";
 import { ModalFilterBar } from "./ModalFilterBar";
 
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { Task } from "../../types/Task";
+
 export const Modal = () => {
+  const { value: tasks, updateLocalStorage } = useLocalStorage<Task[]>('tasks-list', []);
+
+  console.log('dentro de modal', tasks);
+
   return (
     <Container>
       <ModalHeader />
-      <ModalProgressBar />
+      <ModalProgressBar tasks={tasks} />
       <ModalFilterBar />
-      <ModalTaskList />
+      <ModalTaskList
+        tasks={tasks}
+        updateLocalStorage={updateLocalStorage}
+      />
     </Container>
   );
 }
