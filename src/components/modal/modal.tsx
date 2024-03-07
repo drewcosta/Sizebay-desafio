@@ -11,8 +11,6 @@ import { Task } from "../../types/Task";
 export const Modal = () => {
   const { value: tasks, updateLocalStorage } = useLocalStorage<Task[]>('tasks-list', []);
 
-  console.log('dentro de modal', tasks);
-
   return (
     <Container>
       <ModalHeader />

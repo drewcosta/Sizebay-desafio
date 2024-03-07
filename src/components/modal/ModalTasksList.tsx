@@ -8,9 +8,10 @@ import { Task } from "../../types/Task"
 
 interface Props{
   tasks: Task[],
+  updateLocalStorage: (value: Task[]) => void
 }
 
-export const ModalTaskList = ({ tasks }: Props) => {
+export const ModalTaskList = ({ tasks, updateLocalStorage }: Props) => {
   const { currentStatus, searchTask } = useFilterTasks();
 
   const filterTasksByStatus = (status: string) => {
@@ -23,15 +24,30 @@ export const ModalTaskList = ({ tasks }: Props) => {
   const filteredTasksByStatus = filterTasksByStatus(currentStatus);
   const filteredTasks = filteredTasksByStatus.filter(task => task.title.toLocaleLowerCase().includes(searchTask.toLocaleLowerCase()));
 
-  console.log('dentro de list', tasks)
+  function handleCreateTask(newTask: Task){
+    const updateTasks = [...tasks, newTask];
+    return updateLocalStorage(updateTasks)
+  }
 
-  
+  function handleEditTask(editTask: Task){
+    const updateTasks = tasks.map(task => task.id === editTask.id ? editTask : task);
+    return updateLocalStorage(updateTasks);
+  }
+
+  function handleDeleteTask(deleteTask: Task){
+    const updateTasks = tasks.filter(task => task.id !== deleteTask.id);
+    return updateLocalStorage(updateTasks);
+  }
+
+  function handleConfirmTask(confirmTask: Task){
+    const updateTasks = tasks.map(task => task.id === confirmTask.id ? confirmTask : task);
+    return updateLocalStorage(updateTasks);
+  }
 
   return (
     <TaskListContainer>
 
       <ModalNewTask
-        placeholder="Add new task..."
         buttonIcon={<FaPlusCircle />}
         onCreateTask={handleCreateTask}
       />

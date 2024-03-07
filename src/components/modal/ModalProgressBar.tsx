@@ -9,7 +9,6 @@ export const ModalProgressBar = ({ tasks }: Props) => {
   const tasksDone = tasks.filter(task => task.status === 'done');
   const progressPercentage = tasks.length > 0 ? (tasksDone.length / tasks.length) * 100 : 0;
 
-  console.log('percentage', progressPercentage);
   return (
     <ProgressBar>
       <ProgressBarPercentage percentage={progressPercentage} />
