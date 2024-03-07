@@ -1,17 +1,15 @@
 import styled from "styled-components"
-import { useEffect, useState } from "react";
-import { useCrud } from "../../hooks/useTaskCrud";
+import { Task } from "../../types/Task"
 
-export const ModalProgressBar = () => {
-  const { tasks } = useCrud();
-  const [progressPercentage, setProgressPercentage] = useState(0);
+interface Props{
+  tasks: Task[]
+}
 
-  useEffect(() => {
-    const tasksDone = tasks.filter(task => task.status === 'done');
-    const newProgressPercentage = tasks.length > 0 ? (tasksDone.length / tasks.length) * 100 : 0;
-    setProgressPercentage(newProgressPercentage);
-  }, [tasks]);
-  
+export const ModalProgressBar = ({ tasks }: Props) => {
+  const tasksDone = tasks.filter(task => task.status === 'done');
+  const progressPercentage = tasks.length > 0 ? (tasksDone.length / tasks.length) * 100 : 0;
+
+  console.log('percentage', progressPercentage);
   return (
     <ProgressBar>
       <ProgressBarPercentage percentage={progressPercentage} />
