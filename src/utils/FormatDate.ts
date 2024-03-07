@@ -1,8 +1,8 @@
 import dayjs from 'dayjs';
-import 'dayjs/locale/pt-br';
+import 'dayjs/locale/en';
 
 const currentDate = new Date();
-const formatDate = dayjs(currentDate).locale('pt-br');
+const formatDate = dayjs(currentDate).locale('en');
 
 export const formattedDate = {
   weekday: formatDate.format('dddd'),
