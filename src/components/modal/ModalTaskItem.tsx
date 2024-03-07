@@ -8,30 +8,32 @@ import { toast } from "sonner";
 
 interface Props {
   task: Task;
-  deleteTask: (value: Task) => void;
-  editTask: (value: Task) => void;
-  confirmTask: (value: Task) => void;
+  onDeleteTask: (value: Task) => void;
+  onEditTask: (value: Task) => void;
+  onConfirmTask: (value: Task) => void;
 }
 
-export const ModalTaskItem = ({ task, deleteTask, editTask, confirmTask }: Props) => {
+export const ModalTaskItem = ({ task, onDeleteTask, onEditTask, onConfirmTask }: Props) => {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [editedTitleTask, setEditedTitleTask] = useState(task.title);
   const taskRef = useRef(null);
 
   const handleDeleteTask = () => {
-    deleteTask(task);
+    onDeleteTask(task);
+    setIsInputFocused(false);
     toast.success('Tarefa removida!');
   };
 
   const handleEditTask = () => {
     if (editedTitleTask.trim() === '') return toast.error('Digite um título para a sua tarefa!');
-    editTask({ ...task, title: editedTitleTask });
+    onEditTask({ ...task, title: editedTitleTask });
     setIsInputFocused(false);
+    toast.success('Tarefa editada!');
   };
 
   const handleConfirmTask = () => {
     if (editedTitleTask.trim() === '') return toast.error('Digite um título para a sua tarefa!');
-    confirmTask({ ...task, status: TaskStatus.Done });
+    onConfirmTask({ ...task, status: TaskStatus.Done });
     setIsInputFocused(false);
     toast.success('Tarefa concluída!');
   };

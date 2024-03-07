@@ -4,21 +4,28 @@ import { ModalNewTask } from "./ModalNewTask"
 import { ModalTaskItem } from "./ModalTaskItem"
 import { ModalNoResults } from "./ModalNoResults"
 import { useFilterTasks } from "../../hooks/useFilterTasks"
-import { useCrud } from "../../hooks/useTaskCrud"
+import { Task } from "../../types/Task"
 
-export const ModalTaskList = () => {
+interface Props{
+  tasks: Task[],
+}
+
+export const ModalTaskList = ({ tasks }: Props) => {
   const { currentStatus, searchTask } = useFilterTasks();
-  const { tasks, handleCreateTask, handleEditTask, handleDeleteTask, handleConfirmTask } = useCrud();
 
-  const filteredTasksByStatus = (status: string) => {
+  const filterTasksByStatus = (status: string) => {
     if (!tasks) return [];
     if (status === '') return tasks;
 
     return tasks.filter(task => task.status === status);
   }
 
-  const filteredTasks = filteredTasksByStatus(currentStatus);
-  const filteredTasksSearch = filteredTasks.filter(task => task.title.toLocaleLowerCase().includes(searchTask.toLocaleLowerCase()));
+  const filteredTasksByStatus = filterTasksByStatus(currentStatus);
+  const filteredTasks = filteredTasksByStatus.filter(task => task.title.toLocaleLowerCase().includes(searchTask.toLocaleLowerCase()));
+
+  console.log('dentro de list', tasks)
+
+  
 
   return (
     <TaskListContainer>
@@ -26,20 +33,20 @@ export const ModalTaskList = () => {
       <ModalNewTask
         placeholder="Add new task..."
         buttonIcon={<FaPlusCircle />}
-        createTask={handleCreateTask}
+        onCreateTask={handleCreateTask}
       />
 
       <TasksListContent>
-        {(searchTask || currentStatus) && filteredTasksSearch.length < 1 ? (
+        {(searchTask || currentStatus) && filteredTasks.length < 1 ? (
           <ModalNoResults />
         ) : (
-          filteredTasksSearch.map((task, index) => (
+          filteredTasks.map((task, index) => (
             <ModalTaskItem
               key={index}
               task={task}
-              deleteTask={handleDeleteTask}
-              editTask={handleEditTask}
-              confirmTask={handleConfirmTask}
+              onDeleteTask={handleDeleteTask}
+              onEditTask={handleEditTask}
+              onConfirmTask={handleConfirmTask}
             />
           )))}
       </TasksListContent>
