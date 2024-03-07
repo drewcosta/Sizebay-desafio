@@ -86,7 +86,6 @@ export const ModalTaskItem = ({ task, onDeleteTask, onEditTask, onConfirmTask }:
   );
 };
 
-
 const Container = styled.div`
   position: relative;
   display: flex;

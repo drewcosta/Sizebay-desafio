@@ -8,18 +8,23 @@ import { toast } from "sonner";
 const { v4: uuidv4 } = require('uuid');
 
 interface Props {
-  placeholder?: string;
   buttonIcon?: ReactElement;
-  createTask: (value: Task) => void;
+  onCreateTask: (value: Task) => void;
 }
 
-export const ModalNewTask = ({ placeholder, buttonIcon, createTask }: Props) => {
-
+export const ModalNewTask = ({ buttonIcon, onCreateTask }: Props) => {
   const [taskTitle, setTaskTitle] = useState('');
 
   const handleCreateTask = () => {
     if (taskTitle.trim() !== "") {
-      createTask({ id: uuidv4(), title: taskTitle, status: TaskStatus.Pending });
+
+      const task: Task = {
+        id: uuidv4(),
+        title: taskTitle,
+        status: TaskStatus.Pending
+      }
+
+      onCreateTask(task);
       setTaskTitle('');
       toast.success('Tarefa criada com sucesso!');
     }else{
@@ -32,7 +37,7 @@ export const ModalNewTask = ({ placeholder, buttonIcon, createTask }: Props) => 
 
       <InputText
         type="text"
-        placeholder={placeholder}
+        placeholder='add new task...'
         value={taskTitle}
         onChange={(e) => setTaskTitle(e.target.value)}
       />
