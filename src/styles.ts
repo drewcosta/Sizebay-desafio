@@ -7,7 +7,7 @@ export const Container = styled.main`
 
   min-height: 100vh;
 
-  background: var(--bg-color);
+  background: ${props => props.theme.colors.bg_dark_grey};
 
   @media (max-width: 768px){
     padding: 16px 18px;

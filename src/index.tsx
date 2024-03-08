@@ -1,18 +1,24 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
 
-import './index.css'
+import { ThemeProvider } from 'styled-components'
+import { GlobalStyle } from './styles/globalStyles'
 import { FilterContextProvider } from './contexts/FilterContext'
 import { Toaster } from 'sonner'
+import App from './App'
+import { defaultTheme } from './styles/theme'
+
 
 const AppContainer = () => {
   return (
     <React.StrictMode>
-      <FilterContextProvider>
-        <App />
-        <Toaster richColors />
-      </FilterContextProvider>
+      <ThemeProvider theme={defaultTheme}>
+        <GlobalStyle />
+        <FilterContextProvider>
+          <App />
+          <Toaster richColors />
+        </FilterContextProvider>
+      </ThemeProvider>
     </React.StrictMode>
   )
 }
