@@ -45,7 +45,7 @@ export const ModalNewTask = ({ buttonIcon, onCreateTask }: Props) => {
       <ModalButton
         icon={buttonIcon}
         onClick={handleCreateTask}
-        background="var(--turquesa-color)"
+        background="turquesa"
         colorIcon="white"
       />
 
@@ -60,9 +60,9 @@ const Container = styled.div`
 
   width: 100%;
   max-width: 680px;
-  max-height: 48px;
+  max-height: 50px;
   
-  border: 1px solid var(--border-input-color);
+  border: 1px solid ${props => props.theme.colors.border_input};
   border-radius: 4px;
 `
 
@@ -73,7 +73,7 @@ const InputText = styled.input`
 
   border-radius: 4px 0 0 4px;
   
-  background: var(--input-disabled-color);
+  background: ${props => props.theme.colors.Disable_input};;
   cursor: pointer;
   
   & + button{
@@ -81,7 +81,7 @@ const InputText = styled.input`
   }
 
   &:focus{
-    background: var(--bg-modal-color);
+    background: ${props => props.theme.colors.white};;
     cursor: text;
   }
 `

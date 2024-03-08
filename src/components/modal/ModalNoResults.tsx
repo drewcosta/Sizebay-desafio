@@ -16,7 +16,7 @@ const Container = styled.div`
   align-items: flex-start;
 
   p{
-    font-size: 14px;
+    font-size: ${props => props.theme.fontSizes.text_sm};
     line-height: 19px;
   }
 

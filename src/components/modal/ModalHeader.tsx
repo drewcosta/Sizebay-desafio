@@ -35,16 +35,16 @@ const DateDatails = styled.div`
 `
 
 const Day = styled.h1`
-  font-size: 60px;
+  font-size: ${props => props.theme.fontSizes.text_6xl};
 `
 
 const DateMonthYear = styled.h2`
   display: flex;
   flex-direction: column;
 
+  font-size: ${props => props.theme.fontSizes.text_xl};
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
   line-height: 24px;
   text-transform: capitalize;
 
@@ -54,7 +54,7 @@ const DateMonthYear = styled.h2`
 `
 
 const WeekDay = styled.p`
-  font-size: 24px;
+  font-size: ${props => props.theme.fontSizes.text_xl};
   font-style: normal;
   font-weight: normal;
   text-transform: capitalize;

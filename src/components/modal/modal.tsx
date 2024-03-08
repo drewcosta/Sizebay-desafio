@@ -37,7 +37,7 @@ const Container = styled.div`
   max-width: 800px;
   max-height: 650px;
   
-  background: var(--bg-modal-color);
+  background: ${props => props.theme.colors.white};
   border-radius: 4px;
   
   @media (max-width: 425px) {

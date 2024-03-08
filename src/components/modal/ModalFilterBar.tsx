@@ -34,8 +34,6 @@ export const ModalFilterBar = () => {
 
         <ModalButton
           icon={searchTask ? <IoMdClose /> : <FaSearch />}
-          background="var(--bg-modal-background)"
-          colorIcon="var(--grey-text-color)"
           onClick={() => searchTask && removeFilters()}
         />
       </SearchTask>
@@ -73,15 +71,15 @@ const FilterTask = styled.ul`
 `
 
 const FilterTaskStatus = styled.li<PropsStyles>`
-  list-style: none;
   padding: 8px 16px;
-
-  color: ${(props) => props.checked ? 'var(--turquesa-color)' : 'var(--grey-text-color)'};
-  border: 1px solid ${(props) => props.checked ? 'var(--turquesa-color)' : 'var(--border-input-color)'};
+  
+  color: ${(props) => (props.checked ? props.theme.colors.turquesa : props.theme.colors.grey)};
+  border: 1px solid ${(props) => (props.checked ? props.theme.colors.turquesa : props.theme.colors.border_input)};
   border-radius: 20px;
-
-  font-size: 14px;
+  
+  font-size: ${(props) => props.theme.fontSizes.text_sm};
   text-transform: capitalize;
+  list-style: none;
 
   cursor: pointer;
 `
@@ -92,7 +90,7 @@ const SearchTask = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  border: 1px solid var(--border-input-color);
+  border: 1px solid ${(props) => props.theme.colors.border_input};
   border-radius: 4px;
 `
 
@@ -103,9 +101,7 @@ const InputText = styled.input`
   max-width: 450px;
   max-height: 48px;
   
-  background: var(--bg-modal-color);
+  background: ${props => props.theme.colors.white};
   border-radius: 4px;
-
-  font-size: 14px;
 `
 

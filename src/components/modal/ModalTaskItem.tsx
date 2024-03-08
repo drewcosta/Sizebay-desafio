@@ -71,13 +71,13 @@ export const ModalTaskItem = ({ task, onDeleteTask, onEditTask, onConfirmTask }:
           <ModalButton
             icon={<FaMinusCircle />}
             onClick={handleDeleteTask}
-            background="var(--red-color)"
+            background='red'
             colorIcon="white"
           />
           <ModalButton
             icon={<FaCheckCircle />}
             onClick={handleConfirmTask}
-            background="var(--green-color)"
+            background="green"
             colorIcon="white"
           />
         </>
@@ -94,7 +94,7 @@ const Container = styled.div`
   width: 100%;
   max-width: 680px;
   max-height: 48px;
-  border: 1px solid var(--border-input-color);
+  border: 1px solid ${props => props.theme.colors.border_input};;
   border-radius: 4px;
 `;
 
@@ -102,12 +102,12 @@ const InputText = styled.input`
   width: 100%;
   height: 100%;
   padding: 15px;
-  background: var(--input-disabled-color);
+  background: ${props => props.theme.colors.Disable_input};;
   cursor: pointer;
   z-index: 2;
 
   &:focus {
-    background: var(--bg-modal-color);
+    background: ${props => props.theme.colors.white};;
     cursor: text;
   }
 `;
@@ -116,12 +116,19 @@ const Tooltip = styled.span`
   display: block;
   position: absolute;
   top: 80%;
+
   width: 75px;
   padding: 5px 0;
-  color: #ffffff;
-  background-color: var(--grey-text-color);
-  text-align: center;
+
+  color: ${props => props.theme.colors.white};
+  background-color: ${props => props.theme.colors.grey};
   border-radius: 4px;
+
+  font-size: ${props => props.theme.fontSizes.text_sm};
+  font-weight: normal;
+  font-style: normal;
+  text-align: center;
+
   z-index: 3;
   cursor: pointer;
 `;

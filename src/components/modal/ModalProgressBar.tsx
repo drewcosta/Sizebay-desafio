@@ -23,12 +23,12 @@ interface StylesProps {
 const ProgressBar = styled.div`
   width: 100%;
   height: 24px;
-  background: var(--bg-progress-bar-color);
+  background: ${props => props.theme.colors.bg_light_grey};
   border-radius: 4px;
 `
 const ProgressBarPercentage = styled.div<StylesProps>`
   width: ${props => props.percentage}%;
   height: 24px;
-  background: var(--green-color);
+  background: ${props => props.theme.colors.green};
   border-radius: 4px;
 `

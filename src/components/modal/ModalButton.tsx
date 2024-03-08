@@ -21,9 +21,20 @@ interface StylesProps {
 
 export const Button = styled.button<StylesProps>`
   padding: 15px;
-  background: ${(props) => props.background};
   border: none;
   cursor: pointer;
+  background: ${(props) => {
+    switch (props.background) {
+      case "red":
+        return props.theme.colors.red
+      case "green":
+        return props.theme.colors.green
+      case "turquesa":
+        return props.theme.colors.turquesa
+      default:
+        return 'transparent'
+    }
+  }};
   
   & + button{
     border-top-right-radius: 4px;
