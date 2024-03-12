@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { ModalHeader } from "./ModalHeader";
 import { ModalProgressBar } from "./ModalProgressBar";
-import { ModalTaskList } from "./ModalTasksList";
+import { ModalTasksList } from "./ModalTasksList";
 import { ModalFilterBar } from "./ModalFilterBar";
 
 import { useLocalStorage } from "../../hooks/useLocalStorage";
@@ -16,7 +16,7 @@ export const Modal = () => {
       <ModalHeader />
       <ModalProgressBar tasks={tasks} />
       <ModalFilterBar />
-      <ModalTaskList
+      <ModalTasksList
         tasks={tasks}
         updateLocalStorage={updateLocalStorage}
       />

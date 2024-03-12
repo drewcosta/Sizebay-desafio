@@ -1,5 +1,5 @@
 import { Modal } from './components/Modal'
-import { Container } from './styles'
+import { Container } from './styles/AppStyles'
 
 function App() {
   return (

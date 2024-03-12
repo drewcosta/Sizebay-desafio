@@ -11,7 +11,7 @@ interface Props{
   updateLocalStorage: (value: Task[]) => void
 }
 
-export const ModalTaskList = ({ tasks, updateLocalStorage }: Props) => {
+export const ModalTasksList = ({ tasks, updateLocalStorage }: Props) => {
   const { currentStatus, searchTask } = useFilterTasks();
 
   const filterTasksByStatus = (status: string) => {
