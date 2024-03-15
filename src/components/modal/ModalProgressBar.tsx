@@ -1,8 +1,8 @@
 import styled from "styled-components"
-import { Task } from "../../types/Task"
+import { ITask } from "../../types/Task"
 
 interface Props{
-  tasks: Task[]
+  tasks: ITask[]
 }
 
 export const ModalProgressBar = ({ tasks }: Props) => {

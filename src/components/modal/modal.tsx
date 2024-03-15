@@ -6,10 +6,10 @@ import { ModalTasksList } from "./ModalTasksList";
 import { ModalFilterBar } from "./ModalFilterBar";
 
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { Task } from "../../types/Task";
+import { ITask } from "../../types/Task";
 
 export const Modal = () => {
-  const { value: tasks, updateLocalStorage } = useLocalStorage<Task[]>('tasks-list', []);
+  const { value: tasks, updateLocalStorage } = useLocalStorage<ITask[]>('tasks-list', []);
 
   return (
     <Container>

@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { ReactElement, useState } from "react";
 import { ModalButton } from "./ModalButton";
-import { Task } from "../../types/Task";
+import { ITask } from "../../types/Task";
 import { TaskStatus } from "../../types/TaskStatus";
 import { toast } from "sonner";
 
@@ -9,7 +9,7 @@ const { v4: uuidv4 } = require('uuid');
 
 interface Props {
   buttonIcon?: ReactElement;
-  onCreateTask: (value: Task) => void;
+  onCreateTask: (value: ITask) => void;
 }
 
 export const ModalNewTask = ({ buttonIcon, onCreateTask }: Props) => {
@@ -18,7 +18,7 @@ export const ModalNewTask = ({ buttonIcon, onCreateTask }: Props) => {
   const handleCreateTask = () => {
     if (taskTitle.trim() !== "") {
 
-      const task: Task = {
+      const task: ITask = {
         id: uuidv4(),
         title: taskTitle,
         status: TaskStatus.Pending

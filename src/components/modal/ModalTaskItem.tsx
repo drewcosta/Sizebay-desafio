@@ -1,16 +1,16 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { ModalButton } from "./ModalButton";
 import { FaCheckCircle, FaMinusCircle } from "react-icons/fa";
-import { Task } from "../../types/Task";
+import { ITask } from "../../types/Task";
 import { TaskStatus } from "../../types/TaskStatus";
 import { toast } from "sonner";
 
 interface Props {
-  task: Task;
-  onDeleteTask: (value: Task) => void;
-  onEditTask: (value: Task) => void;
-  onConfirmTask: (value: Task) => void;
+  task: ITask;
+  onDeleteTask: (value: ITask) => void;
+  onEditTask: (value: ITask) => void;
+  onConfirmTask: (value: ITask) => void;
 }
 
 export const ModalTaskItem = ({ task, onDeleteTask, onEditTask, onConfirmTask }: Props) => {
@@ -64,7 +64,7 @@ export const ModalTaskItem = ({ task, onDeleteTask, onEditTask, onConfirmTask }:
 
       {isInputFocused && (
         <>
-          <Tooltip onClick={handleEditTask}>
+          <Tooltip role="tooltip" onClick={handleEditTask}>
             Edit task
           </Tooltip>
 
