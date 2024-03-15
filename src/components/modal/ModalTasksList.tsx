@@ -4,11 +4,11 @@ import { ModalNewTask } from "./ModalNewTask"
 import { ModalTaskItem } from "./ModalTaskItem"
 import { ModalNoResults } from "./ModalNoResults"
 import { useFilterTasks } from "../../hooks/useFilterTasks"
-import { Task } from "../../types/Task"
+import { ITask } from "../../types/Task"
 
 interface Props{
-  tasks: Task[],
-  updateLocalStorage: (value: Task[]) => void
+  tasks: ITask[],
+  updateLocalStorage: (value: ITask[]) => void
 }
 
 export const ModalTasksList = ({ tasks, updateLocalStorage }: Props) => {
@@ -24,22 +24,22 @@ export const ModalTasksList = ({ tasks, updateLocalStorage }: Props) => {
   const filteredTasksByStatus = filterTasksByStatus(currentStatus);
   const filteredTasks = filteredTasksByStatus.filter(task => task.title.toLocaleLowerCase().includes(searchTask.toLocaleLowerCase()));
 
-  function handleCreateTask(newTask: Task){
+  function onCreateTask(newTask: ITask){
     const updateTasks = [...tasks, newTask];
     return updateLocalStorage(updateTasks)
   }
 
-  function handleEditTask(editTask: Task){
+  function onEditTask(editTask: ITask){
     const updateTasks = tasks.map(task => task.id === editTask.id ? editTask : task);
     return updateLocalStorage(updateTasks);
   }
 
-  function handleDeleteTask(deleteTask: Task){
+  function onDeleteTask(deleteTask: ITask){
     const updateTasks = tasks.filter(task => task.id !== deleteTask.id);
     return updateLocalStorage(updateTasks);
   }
 
-  function handleConfirmTask(confirmTask: Task){
+  function onConfirmTask(confirmTask: ITask){
     const updateTasks = tasks.map(task => task.id === confirmTask.id ? confirmTask : task);
     return updateLocalStorage(updateTasks);
   }
@@ -49,7 +49,7 @@ export const ModalTasksList = ({ tasks, updateLocalStorage }: Props) => {
 
       <ModalNewTask
         buttonIcon={<FaPlusCircle />}
-        onCreateTask={handleCreateTask}
+        onCreateTask={onCreateTask}
       />
 
       <TasksListContent>
@@ -60,9 +60,9 @@ export const ModalTasksList = ({ tasks, updateLocalStorage }: Props) => {
             <ModalTaskItem
               key={index}
               task={task}
-              onDeleteTask={handleDeleteTask}
-              onEditTask={handleEditTask}
-              onConfirmTask={handleConfirmTask}
+              onDeleteTask={onDeleteTask}
+              onEditTask={onEditTask}
+              onConfirmTask={onConfirmTask}
             />
           )))}
       </TasksListContent>
