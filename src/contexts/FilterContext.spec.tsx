@@ -6,77 +6,90 @@ import '@testing-library/jest-dom'
 
 import { FilterContextProvider, FilterContext } from './FilterContext';
 
-it('Render without errors', () => {
-  render(
-    <FilterContextProvider>
-      <div>Test Component</div>
-    </FilterContextProvider>
-  );
-});
+describe('Render provider context without errors', () => {
 
-it('Context initializes empty', () => {
-  render(
-    <FilterContextProvider>
-      <FilterContext.Consumer>
-        {({ currentStatus, searchTask }) => (
-          <>
-            <div data-testid="current-status">{currentStatus}</div>
-            <div data-testid="search-task">{searchTask}</div>
-          </>
-        )}
-      </FilterContext.Consumer>
-    </FilterContextProvider>
-  );
-
-  expect(screen.getByTestId('current-status')).toHaveTextContent('');
-  expect(screen.getByTestId('search-task')).toHaveTextContent('');
-});
-
-it('Update the context state correctly', () => {
-  const user = userEvent.setup();
-
-  render(
-    <FilterContextProvider>
-      <FilterContext.Consumer>
-        {({ setCurrentStatus, setSearchTask, removeFilters }) => (
-          <>
-            <button onClick={() => setCurrentStatus('New')}>Set Status</button>
-            <button onClick={() => setSearchTask('Task')}>Set Task</button>
-            <button onClick={removeFilters}>Remove Filters</button>
-          </>
-        )}
-      </FilterContext.Consumer>
-    </FilterContextProvider>
-  );
-
-  // user.click(screen.getByText('Set Status'));
-  // expect(screen.getByTestId('current-status')).toHaveTextContent('New');
-
-  // user.click(screen.getByText('Set Task'));
-  // expect(screen.getByTestId('search-task')).toHaveTextContent('Task');
-
-  // user.click(screen.getByText('Remove Filters'));
-  // expect(screen.getByTestId('current-status')).toHaveTextContent('');
-  // expect(screen.getByTestId('search-task')).toHaveTextContent('');
-});
-
-it('Provide context for child components', () => {
-  const ChildComponent = () => {
-    const { currentStatus, searchTask } = React.useContext(FilterContext);
-    return (
-      <>
-        <div data-testid="current-status">{currentStatus}</div>
-        <div data-testid="search-task">{searchTask}</div>
-      </>
+  it('Render without errors', () => {
+    render(
+      <FilterContextProvider>
+        <div>Test Component</div>
+      </FilterContextProvider>
     );
-  };
+  });
 
-  render(
-    <FilterContextProvider>
-      <ChildComponent />
-    </FilterContextProvider>
-  );
+  it('Provide context for child components', () => {
+    const ChildComponent = () => {
+      const { currentStatus, searchTask } = React.useContext(FilterContext);
+      return (
+        <>
+          <div data-testid="current-status">{currentStatus}</div>
+          <div data-testid="search-task">{searchTask}</div>
+        </>
+      );
+    };
 
-  expect(screen.getByTestId('current-status')).toHaveTextContent('');
-  expect(screen.getByTestId('search-task')).toHaveTextContent('');
-});
+    render(
+      <FilterContextProvider>
+        <ChildComponent />
+      </FilterContextProvider>
+    );
+
+    expect(screen.getByTestId('current-status')).toHaveTextContent('');
+    expect(screen.getByTestId('search-task')).toHaveTextContent('');
+  });
+
+})
+
+describe('', () => {
+
+  it('Context states initializes empty', () => {
+    render(
+      <FilterContextProvider>
+        <FilterContext.Consumer>
+          {({ currentStatus, searchTask }) => (
+            <>
+              <div data-testid="current-status">{currentStatus}</div>
+              <div data-testid="search-task">{searchTask}</div>
+            </>
+          )}
+        </FilterContext.Consumer>
+      </FilterContextProvider>
+    );
+
+    expect(screen.getByTestId('current-status')).toHaveTextContent('');
+    expect(screen.getByTestId('search-task')).toHaveTextContent('');
+  });
+
+  it('Update the context state correctly', async () => {
+    const user = userEvent.setup();
+
+    render(
+      <FilterContextProvider>
+        <FilterContext.Consumer>
+          {({ currentStatus, searchTask, setCurrentStatus, setSearchTask, removeFilters }) => (
+            <>
+              <button onClick={() => setCurrentStatus('New')} data-testid='current-status'>{currentStatus}</button>
+              <input onChange={(e) => setSearchTask(e.target.value)} data-testid='search-task-value' value={searchTask} />
+              <button onClick={removeFilters} data-testid='removeFilters'>Remove Filters</button>
+            </>
+          )}
+        </FilterContext.Consumer>
+      </FilterContextProvider>
+    );
+
+    await user.click(screen.getByTestId('current-status'));
+    expect(screen.getByTestId('current-status')).toHaveTextContent('New');
+
+    const changeInputValue = screen.getByDisplayValue('');
+    await user.type(changeInputValue, 'some task');
+
+    expect(screen.getByTestId('search-task-value')).toHaveValue('some task');
+
+    await user.click(screen.getByTestId('removeFilters'));
+    expect(screen.getByTestId('current-status')).toHaveTextContent('');
+    expect(screen.getByTestId('search-task-value')).toHaveValue('');
+  });
+
+})
+
+
+
