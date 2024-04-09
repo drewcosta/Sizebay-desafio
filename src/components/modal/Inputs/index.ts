@@ -1,5 +1,5 @@
-import { InputText } from "./InputText/InputText"
+import { ModalInputText } from "./InputText/InputText"
 
 export {
-  InputText
+  ModalInputText
 }
