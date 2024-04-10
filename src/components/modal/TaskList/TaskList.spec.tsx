@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import { ModalTasksList } from './ModalTasksList'
-import { ITask } from '../../types/Task'
+import { ModalTaskList } from './TaskList'
+import { ITask } from '../../../types/ITask'
 import { ReactNode } from 'react'
 
 import { ThemeProvider } from 'styled-components'
-import { defaultTheme } from '../../styles/theme'
-import { FilterContextProvider } from '../../contexts/FilterContext'
+import { defaultTheme } from '../../../styles/theme'
+import { FilterContextProvider } from '../../../contexts/FilterContext'
 
 const RenderAPP = ({ children }: { children: ReactNode }) => {
   return (
@@ -28,7 +28,7 @@ const updateLocalStorageMock = jest.fn();
 it('Render tasks list', () => {
   render(
     <RenderAPP>
-      <ModalTasksList tasks={tasks} updateLocalStorage={updateLocalStorageMock} />;
+      <ModalTaskList tasks={tasks} updateLocalStorage={updateLocalStorageMock} />;
     </RenderAPP>
   )
 
