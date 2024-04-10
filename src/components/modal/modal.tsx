@@ -1,22 +1,25 @@
 import styled from "styled-components";
 
-import { ModalHeader } from "./ModalHeader";
-import { ModalProgressBar } from "./ModalProgressBar";
-import { ModalTasksList } from "./ModalTasksList";
-import { ModalFilterBar } from "./ModalFilterBar";
+import { ModalHeader } from "./Header";
+import { ModalFilterBar } from "./FilterBar";
+import { ModalProgressBar } from "./ProgressBar";
+import { ModalTaskList } from "./TaskList";
 
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { ITask } from "../../types/Task";
+import { ITask } from "../../types/ITask";
 
 export const Modal = () => {
   const { value: tasks, updateLocalStorage } = useLocalStorage<ITask[]>('tasks-list', []);
+  
+  const tasksDone = tasks.filter(task => task.status === 'done');
+  const progressPercentage = tasks.length > 0 ? (tasksDone.length / tasks.length) * 100 : 0;
 
   return (
     <Container>
       <ModalHeader />
-      <ModalProgressBar tasks={tasks} />
+      <ModalProgressBar percentage={progressPercentage} />
       <ModalFilterBar />
-      <ModalTasksList
+      <ModalTaskList
         tasks={tasks}
         updateLocalStorage={updateLocalStorage}
       />
@@ -37,7 +40,7 @@ const Container = styled.div`
   max-width: 800px;
   max-height: 650px;
   
-  background: ${props => props.theme.colors.white};
+  background: ${({theme}) => theme.colors.whiteBasic};
   border-radius: 4px;
   
   @media (max-width: 425px) {

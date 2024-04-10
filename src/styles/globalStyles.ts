@@ -15,28 +15,27 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6{
-  color: ${props => props.theme.colors.grey};
+  color: ${({ theme }) => theme.colors.grayMiddle};
   letter-spacing: 0;
 }
 
 p, span, ul{
-  color: ${props => props.theme.colors.grey};
+  color: ${({ theme }) => theme.colors.grayMiddle};
   letter-spacing: 0;
 }
 
 button, input, textarea {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
-  color: ${props => props.theme.colors.grey};
+  color: ${({ theme }) => theme.colors.grayMiddle};
 }
 
 input[type="text"]{
-  font-size: ${props => props.theme.fontSizes.text_sm};
+  font-size: ${({ theme }) => theme.fontSizes.text_sm};
   font-weight: normal;
   font-style: normal;
-  color: ${props => props.theme.colors.grey};
+  color: ${({ theme }) => theme.colors.grayMiddle};
   border: none;
-  border-radius: inherit;
   outline: none;
 }
 `

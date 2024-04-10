@@ -4,7 +4,7 @@ export const defaultTheme = {
     whiteBasic: "#FFFFFF",
     whiteAlmostGray: "#F7F7F7",
     whiteALittleMoreStrength: "#F4F4F4",
-    grayToolTip: "#555555",
+    grayDark: "#555555",
     grayMiddle: "#848484",
     gray: "#00000029",
     grayBackgroundItem: "#DBDBDB",
@@ -20,4 +20,8 @@ export const defaultTheme = {
     text_xl: '24px',
     text_6xl: '60px',
   },
+  breakpoints: {
+    Mobile: '425px',
+    tablets: '768px',
+  }
 }
