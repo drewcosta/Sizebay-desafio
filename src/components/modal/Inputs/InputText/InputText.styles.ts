@@ -7,13 +7,14 @@ export const InputText = styled.input<InputStyles>`
   padding: 15px;
   border-radius: 4px 0 0 4px;
   cursor: pointer;
+  background: ${({ theme, $taskItem }) => $taskItem && theme.colors.whiteALittleMoreStrength};
   
   & + button{
     border-radius: 0 4px 4px 0;
   }
 
   &:focus{
-    background: ${({ theme }) => theme.colors.whiteBasic};;
+    background: ${({ theme }) => theme.colors.whiteBasic};
     cursor: text;
   }
 `
