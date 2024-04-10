@@ -19,14 +19,16 @@ export const DateWrapper = styled.div`
 `
 
 export const MonthDay = styled.h1`
-  font-size: ${props => props.theme.fontSizes.text_6xl};
+  font-size: ${({ theme }) => theme.fontSizes.text_6xl};
+  color: ${({ theme }) => theme.colors.grayMiddle};
 `
 
 export const MonthAndYear = styled.h2`
   display: flex;
   flex-direction: column;
 
-  font-size: ${props => props.theme.fontSizes.text_xl};
+  font-size: ${({ theme }) => theme.fontSizes.text_xl};
+  color: ${({ theme }) => theme.colors.grayMiddle};
   font-style: normal;
   font-weight: normal;
   line-height: 24px;
@@ -38,7 +40,8 @@ export const MonthAndYear = styled.h2`
 `
 
 export const WeekDay = styled.p`
-  font-size: ${props => props.theme.fontSizes.text_xl};
+  font-size: ${({ theme }) => theme.fontSizes.text_xl};
+  color: ${({ theme }) => theme.colors.grayMiddle};
   font-style: normal;
   font-weight: normal;
   text-transform: capitalize;
