@@ -6,6 +6,7 @@ import { ITask } from "../../../types/ITask";
 import { NewTaskProps } from "./INewTask";
 import { TaskStatus } from "../../../types/TaskStatus";
 import { toast } from "sonner";
+import { FaPlusCircle } from "react-icons/fa"
 
 const { v4: uuidv4 } = require('uuid');
 
@@ -35,18 +36,19 @@ export function ModalNewTask({ icon, onCreateTask }: NewTaskProps) {
   }
 
   return (
-    <S.Container>
+    <S.NewTaskWrapper>
       <ModalInputText
         placeholder="add new task..."
         value={taskTitle}
         onChange={changeTitle}
+        aria-label="New Task"
       />
 
       <ModalButton
         onClick={handleCreateTask}
-        icon={icon}
+        icon={<FaPlusCircle />}
         $addButton
       />
-    </S.Container>
+    </S.NewTaskWrapper>
   )
 }
