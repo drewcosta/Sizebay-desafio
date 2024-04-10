@@ -2,10 +2,10 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 
-import { ModalNewTask } from './ModalNewTask'
+import { ModalNewTask } from './NewTask'
 import { ThemeProvider } from 'styled-components'
-import { defaultTheme } from '../../styles/theme'
-import { FilterContextProvider } from '../../contexts/FilterContext'
+import { defaultTheme } from '../../../styles/theme'
+import { FilterContextProvider } from '../../../contexts/FilterContext'
 import { toast } from 'sonner'
 
 jest.mock('uuid', () => ({
