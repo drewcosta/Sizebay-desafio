@@ -3,9 +3,11 @@ import { useFilterTasks } from "../../../hooks/useFilterTasks";
 import { ITask } from "../../../types/ITask";
 import { TaskListProps } from "./ITaskList";
 import { ModalNewTask } from '../NewTask';
+import { NoResults } from './NoResults';
+import { TaskItem } from './TaskItem';
 
 export function ModalTaskList({ tasks, updateLocalStorage }: TaskListProps) {
-  const { currentStatus, searchTask } = useFilterTasks();
+  const { currentStatus, searchTask, removeFilters } = useFilterTasks();
 
   const filterTasksByStatus = (status: string) => {
     if (!tasks) return [];
@@ -47,7 +49,7 @@ export function ModalTaskList({ tasks, updateLocalStorage }: TaskListProps) {
 
       <S.TaskList>
         {(searchTask || currentStatus) && filteredTasks.length < 1 ? (
-          <ModalNoResults />
+          <NoResults removeFilters={removeFilters} />
         ) : (
           filteredTasks.map((task, index) => (
             <TaskItem
@@ -60,10 +62,7 @@ export function ModalTaskList({ tasks, updateLocalStorage }: TaskListProps) {
           )))}
 
       </S.TaskList>
-
-
-
-
+      
     </S.TaskListContainer>
   )
 }

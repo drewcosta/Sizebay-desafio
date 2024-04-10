@@ -2,17 +2,17 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 
-import { ModalTaskItem } from './ModalTaskItem'
+import { TaskItem } from './TaskItem'
 import { ThemeProvider } from 'styled-components'
-import { defaultTheme } from '../../styles/theme'
-import { FilterContextProvider } from '../../contexts/FilterContext'
+import { defaultTheme } from '../../../../styles/theme'
+import { FilterContextProvider } from '../../../../contexts/FilterContext'
 import { toast } from 'sonner'
 
 const RenderAPP = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <FilterContextProvider>
-        <ModalTaskItem
+        <TaskItem
           task={taskMock}
           onDeleteTask={onDeleteTask}
           onEditTask={onEditTask}

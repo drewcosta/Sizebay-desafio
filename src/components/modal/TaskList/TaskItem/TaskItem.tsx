@@ -1,19 +1,13 @@
+import * as S from './TaskItem.styles'
 import { useState, useRef, useEffect } from "react";
-import styled from "styled-components";
-import { ModalButton } from "./ModalButton";
-import { FaCheckCircle, FaMinusCircle } from "react-icons/fa";
-import { ITask } from "../../types/Task";
-import { TaskStatus } from "../../types/TaskStatus";
+import { TaskItemProps } from "./ITaskItem";
+import { TaskStatus } from "../../../../types/TaskStatus";
 import { toast } from "sonner";
+import { ModalInputText } from '../../Inputs';
+import { ModalButton } from '../../Button';
+import { FaCheckCircle, FaMinusCircle } from "react-icons/fa";
 
-interface Props {
-  task: ITask;
-  onDeleteTask: (value: ITask) => void;
-  onEditTask: (value: ITask) => void;
-  onConfirmTask: (value: ITask) => void;
-}
-
-export const ModalTaskItem = ({ task, onDeleteTask, onEditTask, onConfirmTask }: Props) => {
+export function TaskItem({ task, onDeleteTask, onEditTask, onConfirmTask }: TaskItemProps) {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [editedTitleTask, setEditedTitleTask] = useState(task.title);
   const taskRef = useRef(null);
@@ -54,81 +48,34 @@ export const ModalTaskItem = ({ task, onDeleteTask, onEditTask, onConfirmTask }:
     };
   }, []);
 
+
   return (
-    <Container ref={taskRef}>
-      <InputText
-        type="text"
+    <S.TaskItemContainer ref={taskRef}>
+
+      <ModalInputText
         value={task.title}
         onChange={(e) => setEditedTitleTask(task.title = e.target.value)}
       />
 
       {isInputFocused && (
         <>
-          <Tooltip role="tooltip" onClick={handleEditTask}>
+          {/* <Tooltip role="tooltip" onClick={handleEditTask}>
             Edit task
-          </Tooltip>
+          </Tooltip> */}
 
           <ModalButton
             icon={<FaMinusCircle />}
             onClick={handleDeleteTask}
-            background='red'
-            colorIcon="white"
+            $excludeButton
           />
+
           <ModalButton
             icon={<FaCheckCircle />}
             onClick={handleConfirmTask}
-            background="green"
-            colorIcon="white"
+            $doneButton
           />
         </>
       )}
-    </Container>
-  );
-};
-
-const Container = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 680px;
-  max-height: 48px;
-  border: 1px solid ${props => props.theme.colors.border_input};;
-  border-radius: 4px;
-`;
-
-const InputText = styled.input`
-  width: 100%;
-  height: 100%;
-  padding: 15px;
-  background: ${props => props.theme.colors.Disable_input};;
-  cursor: pointer;
-  z-index: 2;
-
-  &:focus {
-    background: ${props => props.theme.colors.white};;
-    cursor: text;
-  }
-`;
-
-const Tooltip = styled.span`
-  display: block;
-  position: absolute;
-  top: 80%;
-
-  width: 75px;
-  padding: 5px 0;
-
-  color: ${props => props.theme.colors.white};
-  background-color: ${props => props.theme.colors.grey};
-  border-radius: 4px;
-
-  font-size: ${props => props.theme.fontSizes.text_sm};
-  font-weight: normal;
-  font-style: normal;
-  text-align: center;
-
-  z-index: 3;
-  cursor: pointer;
-`;
+    </S.TaskItemContainer>
+  )
+}
