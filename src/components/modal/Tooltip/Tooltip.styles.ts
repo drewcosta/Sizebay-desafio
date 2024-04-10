@@ -14,7 +14,7 @@ export const Tooltip = styled.span<TooltipStyles>`
       padding: 5px 0;
 
       color: ${({ theme }) => theme.colors.whiteBasic};
-      background-color: ${({ theme }) => theme.colors.gray};
+      background-color: ${({ theme }) => theme.colors.grayMiddle};
       border-radius: 4px;
 
       font-size: ${({ theme }) => theme.fontSizes.text_sm};
