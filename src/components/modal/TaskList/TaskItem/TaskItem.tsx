@@ -56,13 +56,15 @@ export function TaskItem({ task, onDeleteTask, onEditTask, onConfirmTask }: Task
       <ModalInputText
         value={task.title}
         onChange={(e) => setEditedTitleTask(task.title = e.target.value)}
+        $taskItem
+        aria-label='Task Item'
       />
 
       {isInputFocused && (
         <>
           <Tooltip
-            onClick={handleEditTask}
             title='Edit Task'
+            onClick={handleEditTask}
             $taskItem
           />
           
