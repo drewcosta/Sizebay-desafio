@@ -8,25 +8,24 @@ import { ModalInputText } from "../Inputs";
 
 export const ModalFilterBar = () => {
   const { currentStatus, setCurrentStatus, searchTask, setSearchTask, removeFilters } = useFilterTasks();
-  
+
   const TaskStatusValues = Object.values(TaskStatus);
 
   return (
     <S.Container>
 
       <S.FilterButtonsBox>
-
         {TaskStatusValues.map((status, index) => (
-          <ModalButton
-            key={index}
-            onClick={() => setCurrentStatus(status)}
-            $clicked={currentStatus === status}
-            $filterButton
-          >
-            {status}
-          </ModalButton>
+          <li key={index}>
+            <ModalButton
+              onClick={() => setCurrentStatus(status)}
+              $clicked={currentStatus === status}
+              $filterButton
+            >
+              {status}
+            </ModalButton>
+          </li>
         ))}
-
       </S.FilterButtonsBox>
 
       <S.InputBox>
@@ -36,13 +35,15 @@ export const ModalFilterBar = () => {
           placeholder="Search items..."
           value={searchTask}
           onChange={(e) => setSearchTask(e.target.value)}
+          aria-label="Search"
         />
 
         <ModalButton
           icon={searchTask ? <IoMdClose /> : <FaSearch />}
           onClick={() => searchTask && removeFilters()}
+          $searchButton
         />
-        
+
       </S.InputBox>
 
     </S.Container>
