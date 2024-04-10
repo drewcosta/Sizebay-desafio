@@ -14,6 +14,17 @@ export const Button = styled.button<ButtonStyles>`
     border-bottom-right-radius: 4px;
   }
 
+  ${({ $searchButton }) =>
+    $searchButton &&
+    css`
+      background-color: ${({ theme }) => theme.colors.whiteBasic};
+
+      & > svg{
+        color: ${({ theme }) => theme.colors.grayMiddle};
+      }
+    `
+  }
+
   ${({ $addButton }) =>
     $addButton &&
     css`
@@ -52,7 +63,8 @@ export const Button = styled.button<ButtonStyles>`
     css`
       padding: 8px 16px;
       color: ${$clicked ? theme.colors.turquesaAddItem : theme.colors.grayMiddle};
-      border: 1px solid ${$clicked ? theme.colors.turquesaAddItem : theme.colors.grayMiddle}};
+      background-color: ${$clicked ? theme.colors.grayBackgroundButton : theme.colors.whiteBasic};
+      border: 1px solid ${$clicked ? theme.colors.turquesaAddItem : theme.colors.grayBackgroundItem}};
       border-radius: 20px;
   
       font-size: ${(props) => props.theme.fontSizes.text_sm};

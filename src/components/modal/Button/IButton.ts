@@ -6,6 +6,7 @@ export interface ButtonStyles {
   $addButton?: boolean;
   $excludeButton?: boolean;
   $doneButton?: boolean;
+  $searchButton?: boolean;
 }
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, ButtonStyles {
