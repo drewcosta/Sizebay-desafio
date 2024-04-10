@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { ModalInputText } from '../../Inputs';
 import { ModalButton } from '../../Button';
 import { FaCheckCircle, FaMinusCircle } from "react-icons/fa";
+import { Tooltip } from '../../Tooltip';
 
 export function TaskItem({ task, onDeleteTask, onEditTask, onConfirmTask }: TaskItemProps) {
   const [isInputFocused, setIsInputFocused] = useState(false);
@@ -59,10 +60,12 @@ export function TaskItem({ task, onDeleteTask, onEditTask, onConfirmTask }: Task
 
       {isInputFocused && (
         <>
-          {/* <Tooltip role="tooltip" onClick={handleEditTask}>
-            Edit task
-          </Tooltip> */}
-
+          <Tooltip
+            onClick={handleEditTask}
+            title='Edit Task'
+            $taskItem
+          />
+          
           <ModalButton
             icon={<FaMinusCircle />}
             onClick={handleDeleteTask}
