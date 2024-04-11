@@ -1,6 +1,7 @@
 import * as S from "./FilterBar.styles";
 import { ModalButton } from "../Button";
 import { FaSearch } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { TaskStatus } from "../../../types/TaskStatus";
 import { useFilterTasks } from "../../../hooks/useFilterTasks";
@@ -21,6 +22,7 @@ export const ModalFilterBar = () => {
               onClick={() => setCurrentStatus(status)}
               $clicked={currentStatus === status}
               $filterButton
+              icon={currentStatus === status ? <FaCheck /> : undefined}
             >
               {status}
             </ModalButton>
