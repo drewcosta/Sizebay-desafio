@@ -39,7 +39,7 @@ export const Button = styled.button<ButtonStyles>`
   ${({ $doneButton }) =>
     $doneButton &&
     css`
-      background-color: ${({ theme }) => theme.colors.greenTaskBar};
+      background-color: ${({ theme }) => theme.colors.greenDoneItem};
 
       & > svg{
         color: ${({ theme }) => theme.colors.whiteBasic};
@@ -66,6 +66,7 @@ export const Button = styled.button<ButtonStyles>`
       background-color: ${$clicked ? theme.colors.grayBackgroundButton : theme.colors.whiteBasic};
       border: 1px solid ${$clicked ? theme.colors.turquesaAddItem : theme.colors.grayBackgroundItem}};
       border-radius: 20px;
+      gap: 6px;
   
       font-size: ${(props) => props.theme.fontSizes.text_sm};
       text-transform: capitalize;

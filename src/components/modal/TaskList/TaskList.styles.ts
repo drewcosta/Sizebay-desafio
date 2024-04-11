@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const TaskListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 16px;
 
   width: 100%;
@@ -15,7 +15,7 @@ export const TaskList = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;  
+  align-items: flex-start;  
   gap: 8px;
 
   width: 100%;
@@ -24,4 +24,9 @@ export const TaskList = styled.div`
   max-height: 216px;
 
   overflow-y: auto;
+
+  @media (max-width: ${({theme}) => theme.breakpoints.Mobile}) {
+    height: 272px;
+    max-height: 272px;
+  }
 `

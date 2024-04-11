@@ -7,7 +7,7 @@ export const Container = styled.div`
   gap: 75px;
 
   width: 100%;
-  height: 100%;
+  height: fit-content;
   max-width: 680px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.Mobile}){

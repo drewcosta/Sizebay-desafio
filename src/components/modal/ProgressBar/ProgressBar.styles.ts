@@ -14,8 +14,9 @@ export const ProgressBar = styled.div`
 export const ProgressBarPercentage = styled.div<ProgressBarStyles>`
   width: ${({ width }) => width}%;
   height: 24px;
-  background: ${({ theme }) => theme.colors.greenTaskBar};
+  background: ${({ theme }) => theme.colors.greenDoneItem};
   border-radius: 4px;
+  transition: ease-in-out .5s;
 `
 
 export const Animation = styled.div`
