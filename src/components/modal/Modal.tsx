@@ -8,7 +8,7 @@ import { ModalTaskList } from "./TaskList";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { ITask } from "../../types/ITask";
 
-export const Modal = () => {
+export function Modal() {
   const { value: tasks, updateLocalStorage } = useLocalStorage<ITask[]>('tasks-list', []);
 
   const tasksDone = tasks.filter(task => task.status === 'done');

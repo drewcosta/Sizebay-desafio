@@ -1,1 +1,5 @@
-export * from './Modal'
+import { Modal } from './modal'
+
+export {
+  Modal
+}
