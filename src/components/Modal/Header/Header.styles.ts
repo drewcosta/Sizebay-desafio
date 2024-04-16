@@ -21,6 +21,8 @@ export const DateWrapper = styled.div`
 export const MonthDay = styled.h1`
   font-size: ${({ theme }) => theme.fontSizes.text_6xl};
   color: ${({ theme }) => theme.colors.grayMiddle};
+  font-weight: 500;
+  line-height: 79px;
 `
 
 export const MonthAndYear = styled.h2`
@@ -44,5 +46,6 @@ export const WeekDay = styled.p`
   color: ${({ theme }) => theme.colors.grayMiddle};
   font-style: normal;
   font-weight: normal;
+  line-height: 24px;
   text-transform: capitalize;
 `

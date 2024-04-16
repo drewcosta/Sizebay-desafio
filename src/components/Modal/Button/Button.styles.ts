@@ -21,6 +21,8 @@ export const Button = styled.button<ButtonStyles>`
 
       & > svg{
         color: ${({ theme }) => theme.colors.grayMiddle};
+        width: 13px;
+        height: 14px;
       }
     `
   }
@@ -61,18 +63,23 @@ export const Button = styled.button<ButtonStyles>`
   ${({ theme, $clicked, $filterButton }) =>
     $filterButton &&
     css`
-      padding: 8px 16px;
       color: ${$clicked ? theme.colors.turquesaAddItem : theme.colors.grayMiddle};
       background-color: ${$clicked ? theme.colors.grayBackgroundButton : theme.colors.whiteBasic};
       border: 1px solid ${$clicked ? theme.colors.turquesaAddItem : theme.colors.grayBackgroundItem}};
       border-radius: 20px;
+      
+      padding: 8px 16px;
       gap: 6px;
   
-      font-size: ${(props) => props.theme.fontSizes.text_sm};
+      font-size: ${(({ theme }) => theme.fontSizes.text_sm)};
+      font-weight: normal;
+      line-height: 19px;
       text-transform: capitalize;
 
       & > svg{
         color: ${({ theme }) => theme.colors.turquesaAddItem};
+        width: 12px;
+        height: 9px;
       }
     `
   }

@@ -6,6 +6,8 @@ export const Container = styled.div`
 
   p{
     font-size: ${({ theme }) => theme.fontSizes.text_sm};
+    font-weight: normal;
+    text-align: left;
     line-height: 19px;
   }
 

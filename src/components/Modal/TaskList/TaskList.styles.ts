@@ -9,6 +9,8 @@ export const TaskListContainer = styled.div`
 
   width: 100%;
   height: 100%;
+  max-width: 680px;
+  max-height: 280px;
 `
 
 export const TaskList = styled.div`
