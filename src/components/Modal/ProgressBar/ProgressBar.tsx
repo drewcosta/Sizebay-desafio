@@ -1,10 +1,9 @@
 import * as S from './ProgressBar.styles';
+import { ProgressBarProps } from "./ProgressBar.types";
 import { LottieAnimation } from '../LottieAnimation';
 import Confetti from '../../../assets/Confetti.json';
-import { useTaskOperations } from '../../../hooks/useTaskOperations';
 
-export function ModalProgressBar() {
-  const { tasks } = useTaskOperations('tasks-list', []);
+export function ModalProgressBar({ tasks }: ProgressBarProps) {
 
   const tasksDone = tasks.filter(task => task.status === 'done');
   const progressPercentage = tasks.length > 0 ? (tasksDone.length / tasks.length) * 100 : 0;

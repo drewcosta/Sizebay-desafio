@@ -28,7 +28,7 @@ const updateLocalStorageMock = jest.fn();
 it('Render tasks list', () => {
   render(
     <RenderAPP>
-      <ModalTaskList />;
+      <ModalTaskList tasks={tasks} updateLocalStorage={updateLocalStorageMock} />;
     </RenderAPP>
   )
 
