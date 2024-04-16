@@ -69,7 +69,7 @@ describe('Test task handling', () => {
     
     await user.click(deleteButton[0]);
 
-    expect(onDeleteTask).toHaveBeenCalledWith(taskMock);
+    expect(onDeleteTask).toHaveBeenCalledWith(taskMock.id);
     expect(toast.success).toHaveBeenCalledWith('Tarefa removida!');
   });
 
@@ -87,7 +87,7 @@ describe('Test task handling', () => {
     
     await user.click(confirmButton[1]);
 
-    expect(onConfirmTask).toHaveBeenCalledWith({...taskMock, status: 'done'});
+    expect(onConfirmTask).toHaveBeenCalledWith(taskMock.id);
     expect(toast.success).toHaveBeenCalledWith('Tarefa concluída!');
   });
 
@@ -103,7 +103,7 @@ describe('Test task handling', () => {
     
     await user.click(tooltip);
 
-    expect(onEditTask).toHaveBeenCalledWith(taskMock);
+    expect(onEditTask).toHaveBeenCalledWith(taskMock.title, taskMock.id);
     expect(toast.success).toHaveBeenCalledWith('Tarefa editada!');
   });
 });
