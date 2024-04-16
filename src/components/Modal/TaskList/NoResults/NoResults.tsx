@@ -21,7 +21,7 @@ export function NoResults({ removeFilters, statusResult }: NoResultsProps) {
 
   return (
     <S.Container>
-      <p> You search found no results. <span onClick={removeFilters}>Clear the filter here</span> to see all items.</p>
+      <p> You search found no results. <span onClick={removeFilters}>Clear the search here</span> to see all items.</p>
     </S.Container>
   )
 
