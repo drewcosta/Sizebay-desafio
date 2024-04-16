@@ -32,7 +32,9 @@ button, input, textarea {
 
 input[type="text"]{
   font-size: ${({ theme }) => theme.fontSizes.text_sm};
+  line-height: 19px;
   font-weight: normal;
+  letter-spacing: 0px;
   font-style: normal;
   color: ${({ theme }) => theme.colors.grayMiddle};
   border: none;

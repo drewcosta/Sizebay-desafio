@@ -7,13 +7,17 @@ export const ProgressBar = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  height: 24px;
+  height: 100%;
+  max-width: 680px;
+  max-height: 24px;
   background: ${({ theme }) => theme.colors.grayLight};
   border-radius: 4px;
 `
 export const ProgressBarPercentage = styled.div<ProgressBarStyles>`
   width: ${({ width }) => width}%;
-  height: 24px;
+  height: 100%;
+  max-width: 680px;
+  max-height: 24px;
   background: ${({ theme }) => theme.colors.greenDoneItem};
   border-radius: 4px;
   transition: ease-in-out .5s;
