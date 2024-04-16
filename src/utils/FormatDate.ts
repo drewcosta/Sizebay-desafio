@@ -1,12 +1,11 @@
-import dayjs from 'dayjs';
-import 'dayjs/locale/en';
-
 const currentDate = new Date();
-const formatDate = dayjs(currentDate).locale('en');
+
+const day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 export const formattedDate = {
-  weekday: formatDate.format('dddd'),
-  day: formatDate.format('DD'),
-  month: formatDate.format('MMM'),
-  year: formatDate.format('YYYY'),
-}
+  weekday: day[currentDate.getDay()],
+  day: currentDate.getDate(),
+  month: month[currentDate.getMonth()],
+  year: currentDate.getFullYear(),
+};
