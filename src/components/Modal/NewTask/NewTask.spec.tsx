@@ -67,7 +67,7 @@ it('should call onCreateTask when the user clicks the create task button', async
 
   await user.click(createTaskButton);
   
-  expect(onCreateTask).toHaveBeenCalledWith(taskMock);
+  expect(onCreateTask).toHaveBeenCalledWith(taskMock.title);
   expect(toast.success).toHaveBeenCalledWith('Tarefa criada com sucesso!');
 });
 
