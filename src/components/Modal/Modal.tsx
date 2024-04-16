@@ -11,13 +11,10 @@ import { ITask } from "../../types/ITask";
 export function Modal() {
   const { value: tasks, updateLocalStorage } = useLocalStorage<ITask[]>('tasks-list', []);
 
-  const tasksDone = tasks.filter(task => task.status === 'done');
-  const progressPercentage = tasks.length > 0 ? (tasksDone.length / tasks.length) * 100 : 0;
-
   return (
     <S.Container>
       <ModalHeader />
-      <ModalProgressBar percentage={progressPercentage} />
+      <ModalProgressBar tasks={tasks} />
       <ModalFilterBar />
       <ModalTaskList
         tasks={tasks}
