@@ -35,7 +35,6 @@ http://localhost:3000
 - Jest + Testing Library
 - Sonner
 - Lottie-react
-- Dayjs
 - LocalStorage
 - UUID
 
