@@ -77,13 +77,13 @@ describe('Test task operations', () => {
       status: 'pending',
     }
 
-    function onEditTask(editTask: ITask) {
-      tasks = tasks.map(task => task.id === editTask.id ? editTask : task);
+    function onEditTask(newContent:string, id:string) {
+      tasks = tasks.map(task => task.id === id ? {...task, title: newContent} : task);
       updateLocalStorageMock(tasks);
       return tasks;
     }
 
-    const updatedTasks = onEditTask(editTaskTest);
+    const updatedTasks = onEditTask(editTaskTest.title, editTaskTest.id);
 
     expect(updateLocalStorageMock).toHaveBeenCalledWith(tasks);
     expect(updatedTasks).toEqual(tasks);
@@ -98,13 +98,13 @@ describe('Test task operations', () => {
       status: 'pending',
     }
 
-    function onDeleteTask(deleteTask: ITask) {
-      tasks = tasks.filter(task => task.id !== deleteTask.id);
+    function onDeleteTask(id: string) {
+      tasks = tasks.filter(task => task.id !== id);
       updateLocalStorageMock(tasks);
       return tasks;
     }
 
-    const updatedTasks = onDeleteTask(deleteTaskTest);
+    const updatedTasks = onDeleteTask(deleteTaskTest.id);
 
     expect(updateLocalStorageMock).toHaveBeenCalledWith(tasks);
     expect(updatedTasks).toEqual(tasks);
@@ -119,14 +119,13 @@ describe('Test task operations', () => {
       status: 'done',
     }
 
-    function onEditTask(confirmTask: ITask) {
-      tasks = tasks.map(task => task.id === confirmTask.id ? confirmTask : task);
+    function onConfirmTask(id: string) {
+      tasks = tasks.map(task => task.id === id ? {...task, status: "done"} : task);
       updateLocalStorageMock(tasks);
       return tasks;
     }
 
-
-    const updatedTasks = onEditTask(ConfirmTaskTest);
+    const updatedTasks = onConfirmTask(ConfirmTaskTest.id);
 
     expect(updateLocalStorageMock).toHaveBeenCalledWith(tasks);
     expect(updatedTasks).toEqual(tasks);

@@ -5,6 +5,8 @@ import { TaskListProps } from "./ITaskList";
 import { ModalNewTask } from '../NewTask';
 import { NoResults } from './NoResults';
 import { TaskItem } from './TaskItem';
+import { TaskStatus } from '../../../types/TaskStatus';
+const { v4: uuidv4 } = require('uuid');
 
 export function ModalTaskList({ tasks, updateLocalStorage }: TaskListProps) {
   const { currentStatus, searchTask, removeFilters } = useFilterTasks();
@@ -19,37 +21,44 @@ export function ModalTaskList({ tasks, updateLocalStorage }: TaskListProps) {
   const filteredTasksByStatus = filterTasksByStatus(currentStatus);
   const filteredTasks = filteredTasksByStatus.filter(task => task.title.toLocaleLowerCase().includes(searchTask.toLocaleLowerCase()));
 
-  function onCreateTask(newTask: ITask) {
+  function onCreateTask(content: string) {
+    const newTask: ITask = {
+      id: uuidv4(),
+      title: content,
+      status: TaskStatus.Pending
+    }
+
     const updateTasks = [...tasks, newTask];
     return updateLocalStorage(updateTasks)
   }
 
-  function onEditTask(editTask: ITask) {
-    const updateTasks = tasks.map(task => task.id === editTask.id ? editTask : task);
+  function onEditTask(newContent: string, id: string) {
+    const updateTasks = tasks.map(task => task.id === id ? { ...task, title: newContent } : task);
     return updateLocalStorage(updateTasks);
   }
 
-  function onDeleteTask(deleteTask: ITask) {
-    const updateTasks = tasks.filter(task => task.id !== deleteTask.id);
+  function onDeleteTask(id: string) {
+    const updateTasks = tasks.filter(task => task.id !== id);
     return updateLocalStorage(updateTasks);
   }
 
-  function onConfirmTask(confirmTask: ITask) {
-    const updateTasks = tasks.map(task => task.id === confirmTask.id ? confirmTask : task);
+  function onConfirmTask(id: string) {
+    const updateTasks = tasks.map(task => task.id === id ? { ...task, status: TaskStatus.Done } : task);
     return updateLocalStorage(updateTasks);
   }
-
 
   return (
     <S.TaskListContainer>
 
-      <ModalNewTask
-        onCreateTask={onCreateTask}
-      />
+      {!searchTask &&
+        <ModalNewTask
+          onCreateTask={onCreateTask}
+        />
+      }
 
       <S.TaskList>
         {(searchTask || currentStatus) && filteredTasks.length < 1 ? (
-          <NoResults removeFilters={removeFilters} />
+          <NoResults removeFilters={removeFilters} statusResult={currentStatus} />
         ) : (
           filteredTasks.map((task, index) => (
             <TaskItem
@@ -62,7 +71,7 @@ export function ModalTaskList({ tasks, updateLocalStorage }: TaskListProps) {
           )))}
 
       </S.TaskList>
-      
+
     </S.TaskListContainer>
   )
 }
