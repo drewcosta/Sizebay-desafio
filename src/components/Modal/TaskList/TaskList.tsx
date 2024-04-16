@@ -1,7 +1,7 @@
 import * as S from './TaskList.styles';
 import { useFilterTasks } from "../../../hooks/useFilterTasks";
 import { ITask } from "../../../types/ITask";
-import { TaskListProps } from "./ITaskList";
+import { TaskListProps } from "./TaskList.types";
 import { ModalNewTask } from '../NewTask';
 import { NoResults } from './NoResults';
 import { TaskItem } from './TaskItem';

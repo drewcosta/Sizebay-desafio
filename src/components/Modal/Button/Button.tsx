@@ -1,5 +1,5 @@
 import * as S from './Button.styles';
-import { ButtonProps } from './IButton';
+import { ButtonProps } from './Button.types';
 
 export function ModalButton({ children, icon, ...props }: ButtonProps){
   return (

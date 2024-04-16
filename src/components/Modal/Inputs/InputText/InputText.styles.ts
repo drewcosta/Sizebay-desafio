@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { InputStyles } from './IInputText';
+import { InputStyles } from './InputText.types';
 
 export const InputText = styled.input<InputStyles>`
   width: 100%;

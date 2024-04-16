@@ -1,5 +1,5 @@
 import * as S from './InputText.styles'
-import { InputProps } from './IInputText'
+import { InputProps } from './InputText.types'
 
 export function ModalInputText(props: InputProps) {
   return (

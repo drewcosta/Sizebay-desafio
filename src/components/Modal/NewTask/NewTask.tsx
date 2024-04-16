@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from "react";
 import * as S from "./NewTask.styles";
 import { ModalInputText } from "../Inputs";
 import { ModalButton } from "../Button";
-import { NewTaskProps } from "./INewTask";
+import { NewTaskProps } from "./NewTask.types";
 import { toast } from "sonner";
 import { FaPlusCircle } from "react-icons/fa"
 

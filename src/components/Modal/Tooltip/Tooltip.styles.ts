@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { TooltipStyles } from "./ITooltip";
+import { TooltipStyles } from "./Tooltip.types";
 
 export const Tooltip = styled.span<TooltipStyles>`
   display: flex;

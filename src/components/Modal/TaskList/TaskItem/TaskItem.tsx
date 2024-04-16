@@ -1,6 +1,6 @@
 import * as S from './TaskItem.styles'
 import { useState, useRef, useEffect } from "react";
-import { TaskItemProps } from "./ITaskItem";
+import { TaskItemProps } from "./TaskItem.types";
 import { toast } from "sonner";
 import { ModalInputText } from '../../Inputs';
 import { ModalButton } from '../../Button';

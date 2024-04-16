@@ -1,5 +1,5 @@
 import * as S from './NoResults.styles'
-import { NoResultsProps } from './INoResults';
+import { NoResultsProps } from './NoResults.types';
 
 export function NoResults({ removeFilters, statusResult }: NoResultsProps) {
 

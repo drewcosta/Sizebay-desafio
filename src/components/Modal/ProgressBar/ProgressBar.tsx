@@ -1,5 +1,5 @@
 import * as S from './ProgressBar.styles';
-import { ProgressBarProps } from "./IProgressBar";
+import { ProgressBarProps } from "./ProgressBar.types";
 import { LottieAnimation } from '../LottieAnimation';
 import Confetti from '../../../assets/Confetti.json';
 

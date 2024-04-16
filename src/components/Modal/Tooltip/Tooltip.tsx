@@ -1,4 +1,4 @@
-import { TooltipProps } from "./ITooltip";
+import { TooltipProps } from "./Tooltip.types";
 import * as S from './Tooltip.styles'
 
 export function Tooltip({ onClick, title, ...props }: TooltipProps) {

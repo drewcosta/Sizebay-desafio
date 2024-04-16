@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-import { ProgressBarStyles } from "./IProgressBar"
+import { ProgressBarStyles } from "./ProgressBar.types"
 
 export const ProgressBar = styled.div`
   position: relative;
