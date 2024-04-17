@@ -29,11 +29,11 @@ export const MonthAndYear = styled.h2`
   display: flex;
   flex-direction: column;
 
-  font-size: ${({ theme }) => theme.fontSizes.text_xl};
+  font-size: ${({ theme }) => theme.fontSizes.text_2xl};
   color: ${({ theme }) => theme.colors.grayMiddle};
   font-style: normal;
   font-weight: normal;
-  line-height: 24px;
+  line-height: 32px;
   text-transform: capitalize;
 
   & > span:nth-child(2){
@@ -42,7 +42,7 @@ export const MonthAndYear = styled.h2`
 `
 
 export const WeekDay = styled.p`
-  font-size: ${({ theme }) => theme.fontSizes.text_xl};
+  font-size: ${({ theme }) => theme.fontSizes.text_2xl};
   color: ${({ theme }) => theme.colors.grayMiddle};
   font-style: normal;
   font-weight: normal;
