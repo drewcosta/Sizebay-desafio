@@ -15,9 +15,9 @@ export const defaultTheme = {
   },
   fontSizes: {
     text_sm: '14px',
-    text_md: '16px',
+    text_base: '16px',
     text_lg: '18px',
-    text_xl: '24px',
+    text_2xl: '24px',
     text_6xl: '60px',
   },
   breakpoints: {
