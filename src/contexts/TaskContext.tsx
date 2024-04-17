@@ -18,8 +18,11 @@ export const TaskContextProvider = ({ children }: ProviderProps) => {
   const [searchTask, setSearchTask] = useState('');
 
   function removeFilter() {
-    if(searchTask) setSearchTask('')
-    if(currentStatus) setCurrentStatus('')
+    if(searchTask !== ""){
+      setSearchTask('');
+    }else{
+      setCurrentStatus('');
+    }
   };
 
   function onCreateTask(content: string) {

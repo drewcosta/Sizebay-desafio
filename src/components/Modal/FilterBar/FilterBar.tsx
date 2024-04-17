@@ -4,11 +4,11 @@ import { FaSearch } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { TaskStatus } from "../../../types/TaskStatus";
-import { useFilterTasks } from "../../../hooks/useFilterTasks";
+import { useTaskOperations } from "../../../hooks/useTaskOperations";
 import { ModalInputText } from "../Inputs";
 
 export const ModalFilterBar = () => {
-  const { currentStatus, setCurrentStatus, searchTask, setSearchTask, removeFilters } = useFilterTasks();
+  const { currentStatus, setCurrentStatus, searchTask, setSearchTask, removeFilter } = useTaskOperations();
 
   const TaskStatusValues = Object.values(TaskStatus);
 
@@ -42,7 +42,7 @@ export const ModalFilterBar = () => {
 
         <ModalButton
           icon={searchTask ? <IoMdClose /> : <FaSearch />}
-          onClick={() => searchTask && removeFilters()}
+          onClick={() => searchTask && removeFilter()}
           $searchButton
         />
 
