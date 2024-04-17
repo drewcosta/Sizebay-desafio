@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { InputStyles } from './InputText.types';
 
 export const InputText = styled.input<InputStyles>`
@@ -7,8 +7,14 @@ export const InputText = styled.input<InputStyles>`
   padding: 15px;
   border-radius: 4px 0 0 4px;
   cursor: pointer;
-  background: ${({ theme, $taskItem }) => $taskItem && theme.colors.whiteALittleMoreStrength};
   
+  ${({ theme, $taskItem, $taskItemDone }) =>
+    $taskItem &&
+    css`
+      background: ${$taskItemDone ? theme.colors.greenDoneItem : theme.colors.whiteALittleMoreStrength};
+    `
+  }
+    
   & + button{
     border-radius: 0 4px 4px 0;
   }
