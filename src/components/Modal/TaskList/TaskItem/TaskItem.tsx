@@ -6,8 +6,11 @@ import { ModalInputText } from '../../Inputs';
 import { ModalButton } from '../../Button';
 import { FaCheckCircle, FaMinusCircle } from "react-icons/fa";
 import { Tooltip } from '../../Tooltip';
+import { useTaskOperations } from '../../../../hooks/useTaskOperations';
 
-export function TaskItem({ task, onDeleteTask, onEditTask, onConfirmTask }: TaskItemProps) {
+export function TaskItem({ task }: TaskItemProps) {
+  const { onConfirmTask, onDeleteTask, onEditTask} = useTaskOperations();
+  
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [newContent, setNewContent] = useState(task.title);
   const taskRef = useRef(null);
@@ -56,6 +59,7 @@ export function TaskItem({ task, onDeleteTask, onEditTask, onConfirmTask }: Task
         value={task.title}
         onChange={(e) => setNewContent(task.title = e.target.value)}
         $taskItem
+        $taskItemDone={task.status === 'done'}
         aria-label='Task Item'
       />
 
