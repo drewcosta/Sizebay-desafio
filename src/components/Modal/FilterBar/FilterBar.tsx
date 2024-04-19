@@ -23,6 +23,7 @@ export const ModalFilterBar = () => {
               $clicked={currentStatus === status}
               $filterButton
               icon={currentStatus === status ? <FaCheck /> : undefined}
+              data-testid='current-status'
             >
               {status}
             </ModalButton>
@@ -38,12 +39,14 @@ export const ModalFilterBar = () => {
           value={searchTask}
           onChange={(e) => setSearchTask(e.target.value)}
           aria-label="Search"
+          data-testid='search-task'
         />
 
         <ModalButton
           icon={searchTask ? <IoMdClose /> : <FaSearch />}
           onClick={() => searchTask && removeFilter()}
           $searchButton
+          data-testid='remove-filter'
         />
 
       </S.InputBox>

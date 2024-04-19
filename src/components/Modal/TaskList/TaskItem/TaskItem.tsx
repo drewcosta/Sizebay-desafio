@@ -23,7 +23,7 @@ export function TaskItem({ task }: TaskItemProps) {
 
   const handleEditTask = () => {
     if (newContent.trim() === '') return toast.error('Digite um título para a sua tarefa!');
-    onEditTask(newContent, task.id);
+    onEditTask(task.id, newContent);
     setIsInputFocused(false);
     toast.success('Tarefa editada!');
   };
@@ -75,12 +75,14 @@ export function TaskItem({ task }: TaskItemProps) {
             icon={<FaMinusCircle />}
             onClick={handleDeleteTask}
             $excludeButton
+            data-testid='delete-task-button'
           />
 
           <ModalButton
             icon={<FaCheckCircle />}
             onClick={handleConfirmTask}
             $doneButton
+            data-testid='confirm-task-button'
           />
         </>
       )}

@@ -36,7 +36,7 @@ export const TaskContextProvider = ({ children }: ProviderProps) => {
     return updateLocalStorage(updateTasks)
   }
 
-  function onEditTask(newContent: string, id: string) {
+  function onEditTask( id: string, newContent: string) {
     const updateTasks = tasks.map(task => task.id === id ? { ...task, title: newContent } : task);
     return updateLocalStorage(updateTasks);
   }

@@ -34,6 +34,7 @@ export function ModalNewTask() {
             value={content}
             onChange={changeTitle}
             aria-label="New Task"
+            data-testid='new-task-title'
           />
 
           <ModalButton
@@ -41,6 +42,7 @@ export function ModalNewTask() {
             icon={<FaPlusCircle />}
             $addButton
             disabled={!content}
+            data-testid='create-task-btn'
           />
         </S.NewTaskWrapper>
       }

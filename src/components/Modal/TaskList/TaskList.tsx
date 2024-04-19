@@ -8,9 +8,13 @@ export function ModalTaskList() {
 
   return (
     <S.TaskListContainer>
-      <S.TaskList>
+      <S.TaskList data-testid='task-list'>
+
         {(searchTask || currentStatus) && filteredTasks.length < 1 ? (
-          <NoResults removeFilter={removeFilter} statusResult={currentStatus} />
+          <NoResults
+            removeFilter={removeFilter}
+            resultByStatus={currentStatus}
+          />
         ) : (
           filteredTasks.map((task, index) => (
             <TaskItem
