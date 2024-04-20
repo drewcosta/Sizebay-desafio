@@ -2,133 +2,82 @@ import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import { ModalTaskList } from './TaskList'
-import { ITask } from '../../../types/ITask'
-import { ReactNode } from 'react'
 
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from '../../../styles/theme'
-import { FilterContextProvider } from '../../../contexts/FilterContext'
+import { TaskContext } from '../../../contexts/TaskContext'
 
-const RenderAPP = ({ children }: { children: ReactNode }) => {
-  return (
-    <ThemeProvider theme={defaultTheme}>
-      <FilterContextProvider>
-        {children}
-      </FilterContextProvider>
-    </ThemeProvider>
-  )
+const mockTasks = [
+  { id: '1', title: 'task-title-1', status: 'pending' },
+  { id: '2', title: 'task-title-2', status: 'done' }
+]
+
+const empty: [] = []
+
+const valuesMock = {
+  currentStatus: '',
+  searchTask: '',
+  setCurrentStatus: () => {},
+  setSearchTask: () => {},
+  removeFilter: () => {},
+  onConfirmTask: () => {},
+  onCreateTask: () => {},
+  onDeleteTask: () => {},
+  onEditTask: () => {},
+  filteredTasks: [],
+  tasks: [],
 }
 
-let tasks: ITask[] = [
-  { id: '1', title: 'task1', status: 'pending' },
-];
+describe('Testing TaskList component', () => {
 
-const updateLocalStorageMock = jest.fn();
+  it('Render tasks when there are tasks', () => {
+    render(
+      <ThemeProvider theme={defaultTheme}>
+        <TaskContext.Provider value={{ ...valuesMock, currentStatus: '', searchTask: '', filteredTasks: mockTasks }}>
+          <ModalTaskList />
+        </TaskContext.Provider>
+      </ThemeProvider>
+    );
 
-it('Render tasks list', () => {
-  render(
-    <RenderAPP>
-      <ModalTaskList tasks={tasks} updateLocalStorage={updateLocalStorageMock} />;
-    </RenderAPP>
-  )
-
-  expect(tasks).toHaveLength(tasks.length);
-
-  tasks.forEach(task => {
-    expect(screen.getByDisplayValue(task.title)).toBeInTheDocument();
-  });
-});
-
-describe('Test task operations', () => {
-
-  beforeEach(() => {
-    tasks = [
-      { id: '1', title: 'task1', status: 'pending' },
-    ];
-    jest.clearAllMocks();
+    mockTasks.forEach(task => {
+      expect(screen.getByDisplayValue(task.title));
+    });
+    expect(screen.getByTestId('task-list')).toBeInTheDocument();
   });
 
+  it('Render the NoResult component when there are no tasks to search', () => {
+    render(
+      <ThemeProvider theme={defaultTheme}>
+        <TaskContext.Provider value={{ ...valuesMock, searchTask: 'anything', filteredTasks: empty }}>
+          <ModalTaskList />
+        </TaskContext.Provider>
+      </ThemeProvider>
+    );
 
-  it('Create a new task', () => {
-
-    const newTaskTest = {
-      id: '2',
-      title: 'newTaskTest',
-      status: 'pending',
-    }
-
-    function onCreateTask(newTask: ITask) {
-      tasks = [...tasks, newTask];
-      updateLocalStorageMock(tasks);
-      return tasks;
-    }
-
-    const updatedTasks = onCreateTask(newTaskTest);
-
-    expect(updateLocalStorageMock).toHaveBeenCalledWith(tasks);
-    expect(updatedTasks).toEqual(tasks);
+    expect(screen.getByTestId('no-results-search')).toBeInTheDocument();
   });
 
-  it('Edit an existing task', () => {
+  it('Render the NoResult component when there are no tasks for the pending filter', () => {
+    render(
+      <ThemeProvider theme={defaultTheme}>
+        <TaskContext.Provider value={{ ...valuesMock, currentStatus: 'pending', filteredTasks: empty }}>
+          <ModalTaskList />
+        </TaskContext.Provider>
+      </ThemeProvider>
+    );
 
-    const editTaskTest = {
-      id: '1',
-      title: 'title edited',
-      status: 'pending',
-    }
-
-    function onEditTask(newContent:string, id:string) {
-      tasks = tasks.map(task => task.id === id ? {...task, title: newContent} : task);
-      updateLocalStorageMock(tasks);
-      return tasks;
-    }
-
-    const updatedTasks = onEditTask(editTaskTest.title, editTaskTest.id);
-
-    expect(updateLocalStorageMock).toHaveBeenCalledWith(tasks);
-    expect(updatedTasks).toEqual(tasks);
-
+    expect(screen.getByTestId('no-results-pending')).toBeInTheDocument();
   });
 
-  it('Delete an existing task', () => {
+  it('Render the NoResult component when there are no tasks for the done filter', () => {
+    render(
+      <ThemeProvider theme={defaultTheme}>
+        <TaskContext.Provider value={{ ...valuesMock, currentStatus: 'done', filteredTasks: empty }}>
+          <ModalTaskList />
+        </TaskContext.Provider>
+      </ThemeProvider>
+    );
 
-    const deleteTaskTest = {
-      id: '1',
-      title: 'title edited',
-      status: 'pending',
-    }
-
-    function onDeleteTask(id: string) {
-      tasks = tasks.filter(task => task.id !== id);
-      updateLocalStorageMock(tasks);
-      return tasks;
-    }
-
-    const updatedTasks = onDeleteTask(deleteTaskTest.id);
-
-    expect(updateLocalStorageMock).toHaveBeenCalledWith(tasks);
-    expect(updatedTasks).toEqual(tasks);
-
-  });
-
-  it('Confirm a task by changing the status to done', () => {
-
-    const ConfirmTaskTest = {
-      id: '1',
-      title: 'task1',
-      status: 'done',
-    }
-
-    function onConfirmTask(id: string) {
-      tasks = tasks.map(task => task.id === id ? {...task, status: "done"} : task);
-      updateLocalStorageMock(tasks);
-      return tasks;
-    }
-
-    const updatedTasks = onConfirmTask(ConfirmTaskTest.id);
-
-    expect(updateLocalStorageMock).toHaveBeenCalledWith(tasks);
-    expect(updatedTasks).toEqual(tasks);
-
+    expect(screen.getByTestId('no-results-done')).toBeInTheDocument();
   });
 });
