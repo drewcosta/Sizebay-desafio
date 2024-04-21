@@ -30,7 +30,7 @@ export const Button = styled.button<ButtonStyles>`
   ${({ $addButton }) =>
     $addButton &&
     css`
-      background-color: ${({ theme }) => theme.colors.turquesaAddItem};
+      background-color: ${({ theme }) => theme.colors.turquoise};
 
       & > svg{
         color: ${({ theme }) => theme.colors.whiteBasic};
@@ -41,7 +41,7 @@ export const Button = styled.button<ButtonStyles>`
   ${({ $doneButton }) =>
     $doneButton &&
     css`
-      background-color: ${({ theme }) => theme.colors.greenDoneItem};
+      background-color: ${({ theme }) => theme.colors.green};
 
       & > svg{
         color: ${({ theme }) => theme.colors.whiteBasic};
@@ -52,7 +52,7 @@ export const Button = styled.button<ButtonStyles>`
   ${({ $excludeButton }) =>
     $excludeButton &&
     css`
-      background-color: ${({ theme }) => theme.colors.redExcludeButton};
+      background-color: ${({ theme }) => theme.colors.redExclude};
 
       & > svg{
         color: ${({ theme }) => theme.colors.whiteBasic};
@@ -63,9 +63,9 @@ export const Button = styled.button<ButtonStyles>`
   ${({ theme, $clicked, $filterButton }) =>
     $filterButton &&
     css`
-      color: ${$clicked ? theme.colors.turquesaAddItem : theme.colors.grayMiddle};
-      background-color: ${$clicked ? theme.colors.grayBackgroundButton : theme.colors.whiteBasic};
-      border: 1px solid ${$clicked ? theme.colors.turquesaAddItem : theme.colors.grayBackgroundItem}};
+      color: ${$clicked ? theme.colors.turquoise : theme.colors.grayMiddle};
+      background-color: ${$clicked ? theme.backgroundColors.grayBackgroundButton : theme.colors.whiteBasic};
+      border: 1px solid ${$clicked ? theme.colors.turquoise : theme.backgroundColors.grayBackgroundItem}};
       border-radius: 20px;
       
       padding: 8px 16px;
@@ -77,7 +77,7 @@ export const Button = styled.button<ButtonStyles>`
       text-transform: capitalize;
 
       & > svg{
-        color: ${({ theme }) => theme.colors.turquesaAddItem};
+        color: ${({ theme }) => theme.colors.turquoise};
         width: 12px;
         height: 9px;
       }

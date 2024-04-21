@@ -1,4 +1,4 @@
 export interface NoResultsProps{
-  removeFilters: () => void;
-  statusResult: string;
+  removeFilter: () => void;
+  resultByStatus: string;
 }

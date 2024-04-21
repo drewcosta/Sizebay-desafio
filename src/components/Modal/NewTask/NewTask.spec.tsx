@@ -5,12 +5,8 @@ import '@testing-library/jest-dom'
 import { ModalNewTask } from './NewTask'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from '../../../styles/theme'
-import { FilterContextProvider } from '../../../contexts/FilterContext'
+import { TaskContext } from '../../../contexts/TaskContext'
 import { toast } from 'sonner'
-
-jest.mock('uuid', () => ({
-  v4: () => 'mocked-id'
-}));
 
 jest.mock('sonner', () => ({
   toast: {
@@ -19,55 +15,65 @@ jest.mock('sonner', () => ({
   },
 }));
 
+const MockOnCreateTask = jest.fn();
+
+const valueMock = {
+  currentStatus: '',
+  searchTask: '',
+  setCurrentStatus: () => { },
+  setSearchTask: () => { },
+  removeFilter: () => { },
+  onConfirmTask: () => { },
+  onCreateTask: MockOnCreateTask,
+  onDeleteTask: () => { },
+  onEditTask: () => { },
+  filteredTasks: [],
+  tasks: [],
+}
+
 const RenderAPP = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <FilterContextProvider>
-        <ModalNewTask
-          onCreateTask={onCreateTask}
-        />
-      </FilterContextProvider>
+      <TaskContext.Provider value={valueMock}>
+        <ModalNewTask />
+      </TaskContext.Provider>
     </ThemeProvider>
   )
 }
 
-const onCreateTask = jest.fn();
-
 const user = userEvent.setup();
 
-it('Render Modal New Task component', () => {
-  render(
-    <RenderAPP />
-  )
+describe('Testing NewTask component', () => {
 
-  const InputPlaceholderText = screen.getByPlaceholderText('add new task...');
-  const createButton = screen.getByRole('button');
+  it('Render ModalNewTask component', () => {
+    render(<RenderAPP />)
 
-  expect(InputPlaceholderText).toBeInTheDocument();
-  expect(createButton).toBeInTheDocument();
-})
+    const inputText = screen.getByTestId('new-task-title');
+    const createTaskButton = screen.getByTestId('create-task-btn');
 
+    expect(inputText).toBeInTheDocument();
+    expect(createTaskButton).toBeInTheDocument();
+  });
 
-it('should call onCreateTask when the user clicks the create task button', async () => {
-  render(
-    <RenderAPP />
-  )
+  it('The button should be disabled when the content is empty', () => {
+    render(<RenderAPP />);
 
-  const taskMock = {
-    id: 'mocked-id',
-    title: 'changeTaskTitle',
-    status: 'pending',
-  }
+    const createTaskButton = screen.getByTestId('create-task-btn');
+    expect(createTaskButton).toBeDisabled();
+  });
 
-  const changeInputValue = screen.getByDisplayValue('');
-  await user.type(changeInputValue, 'changeTaskTitle');
+  it('Should call handleCreateTask when button is clicked', async () => {
+    render(<RenderAPP />);
 
-  const createTaskButton = screen.getByRole('button');
-  expect(createTaskButton).toHaveStyle({ background: 'rgb(77, 166, 179)' });
+    const inputText = screen.getByTestId('new-task-title');
+    await user.type(inputText, 'newTaskTitle');
 
-  await user.click(createTaskButton);
-  
-  expect(onCreateTask).toHaveBeenCalledWith(taskMock.title);
-  expect(toast.success).toHaveBeenCalledWith('Tarefa criada com sucesso!');
+    const createTaskButton = screen.getByTestId('create-task-btn');
+    await user.click(createTaskButton);
+
+    expect(MockOnCreateTask).toHaveBeenCalledWith('newTaskTitle');
+    expect(toast.success).toHaveBeenCalledWith('Tarefa criada com sucesso!');
+    expect(inputText).toHaveValue('');
+  });
 });
 

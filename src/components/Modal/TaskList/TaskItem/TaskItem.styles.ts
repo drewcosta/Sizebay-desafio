@@ -7,6 +7,6 @@ export const TaskItemContainer = styled.div`
   width: 100%;
   max-width: 680px;
   max-height: 48px;
-  border: 1px solid ${({ theme }) => theme.colors.grayBackgroundItem};
+  border: 1px solid ${({ theme }) => theme.backgroundColors.grayBackgroundItem};
   border-radius: 4px;
 `;

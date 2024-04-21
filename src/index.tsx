@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 
 import { ThemeProvider } from 'styled-components'
 import { GlobalStyle } from './styles/globalStyles'
-import { FilterContextProvider } from './contexts/FilterContext'
+import { TaskContextProvider } from './contexts/TaskContext'
 import { Toaster } from 'sonner'
 import App from './App'
 import { defaultTheme } from './styles/theme'
@@ -14,10 +14,10 @@ const AppContainer = () => {
     <React.StrictMode>
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyle />
-        <FilterContextProvider>
+        <TaskContextProvider>
           <App />
           <Toaster richColors />
-        </FilterContextProvider>
+        </TaskContextProvider>
       </ThemeProvider>
     </React.StrictMode>
   )

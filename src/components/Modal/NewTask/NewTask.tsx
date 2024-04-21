@@ -2,11 +2,12 @@ import { ChangeEvent, useState } from "react";
 import * as S from "./NewTask.styles";
 import { ModalInputText } from "../Inputs";
 import { ModalButton } from "../Button";
-import { NewTaskProps } from "./NewTask.types";
 import { toast } from "sonner";
 import { FaPlusCircle } from "react-icons/fa"
+import { useTaskOperations } from "../../../hooks/useTaskOperations";
 
-export function ModalNewTask({ onCreateTask }: NewTaskProps) {
+export function ModalNewTask() {
+  const { onCreateTask, searchTask } = useTaskOperations();
 
   const [content, setContent] = useState('');
 
@@ -25,19 +26,26 @@ export function ModalNewTask({ onCreateTask }: NewTaskProps) {
   }
 
   return (
-    <S.NewTaskWrapper>
-      <ModalInputText
-        placeholder="add new task..."
-        value={content}
-        onChange={changeTitle}
-        aria-label="New Task"
-      />
+    <>
+      {!searchTask &&
+        <S.NewTaskWrapper>
+          <ModalInputText
+            placeholder="add new task..."
+            value={content}
+            onChange={changeTitle}
+            aria-label="New Task"
+            data-testid='new-task-title'
+          />
 
-      <ModalButton
-        onClick={handleCreateTask}
-        icon={<FaPlusCircle />}
-        $addButton
-      />
-    </S.NewTaskWrapper>
+          <ModalButton
+            onClick={handleCreateTask}
+            icon={<FaPlusCircle />}
+            $addButton
+            disabled={!content}
+            data-testid='create-task-btn'
+          />
+        </S.NewTaskWrapper>
+      }
+    </>
   )
 }

@@ -18,7 +18,7 @@ export const ProgressBarPercentage = styled.div<ProgressBarStyles>`
   height: 100%;
   max-width: 680px;
   max-height: 24px;
-  background: ${({ theme }) => theme.colors.greenDoneItem};
+  background: ${({ theme }) => theme.colors.green};
   border-radius: 4px;
   transition: ease-in-out .3s;
 `

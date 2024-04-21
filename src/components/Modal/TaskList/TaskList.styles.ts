@@ -20,6 +20,7 @@ export const TaskList = styled.div`
   align-items: flex-start;  
   gap: 8px;
 
+  padding-right: 2px;
   width: 100%;
   height: 216px;
   max-width: 680px;
@@ -27,8 +28,25 @@ export const TaskList = styled.div`
 
   overflow-y: auto;
 
-  @media (max-width: ${({theme}) => theme.breakpoints.Mobile}) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  } 
+  ::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.colors.grayLight};
+    border-radius: 9px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.grayDark}; 
+    border-radius: 9px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.Mobile}) {
     height: 272px;
     max-height: 272px;
+    padding: 0px;
+
+    ::-webkit-scrollbar {
+      width: 0px;
+    } 
   }
 `
