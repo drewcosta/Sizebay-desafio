@@ -11,7 +11,7 @@ export const InputText = styled.input<InputStyles>`
   ${({ theme, $taskItem, $taskItemDone }) =>
     $taskItem &&
     css`
-      background: ${$taskItemDone ? theme.colors.greenDoneItem : theme.colors.whiteALittleMoreStrength};
+      background: ${$taskItemDone ? theme.colors.green : theme.colors.whiteStrength};
     `
   }
     

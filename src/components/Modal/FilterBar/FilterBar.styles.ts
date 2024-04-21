@@ -36,6 +36,6 @@ export const InputBox = styled.div`
   max-width: 450px;
   max-height: 40px;
   border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colors.grayBackgroundItem};;
+  border: 1px solid ${({ theme }) => theme.backgroundColors.grayBackgroundItem};;
 `
 

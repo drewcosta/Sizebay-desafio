@@ -1,17 +1,20 @@
+
 export const defaultTheme = {
   colors: {
     gray: "#00000029",
     grayLight: "#E4E4E4",
     grayMiddle: "#848484",
     grayDark: "#555555",
-    grayBackgroundItem: "#DBDBDB",
-    grayBackgroundButton: "#F7F7F8",
     whiteBasic: "#FFFFFF",
     whiteAlmostGray: "#F7F7F7",
-    whiteALittleMoreStrength: "#F4F4F4",
-    greenDoneItem: "#5DE290",
-    turquesaAddItem: "#4DA6B3",
-    redExcludeButton: "#E34F4F",
+    whiteStrength: "#F4F4F4",
+    green: "#5DE290",
+    turquoise: "#4DA6B3",
+    redExclude: "#E34F4F",
+  },
+  backgroundColors: {
+    grayBackgroundItem: "#DBDBDB",
+    grayBackgroundButton: "#F7F7F8",
   },
   fontSizes: {
     text_sm: '14px',
