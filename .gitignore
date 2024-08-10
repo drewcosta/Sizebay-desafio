@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+#Sonar
+/.scannerwork
+\.scannerwork
+
 # production
 /build
 
