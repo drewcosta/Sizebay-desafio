@@ -1,5 +1,4 @@
 # Sizebay Frontend Challenge
-Desafio para Frontend Pleno. 
 
 O desafio baseia-se na construção de uma aplicação web que permita ao usuário criar tarefas, acompanhar seu progresso e administrar suas pendências em uma lista, por meio de um layout amigável.
 Para a construção da interface, exerci as minhas habilidades na transformação de design em código funcional, com o uso da ferramenta de design Adobe XD. A escolha do método de construção estava livre, porém, optei por usar o boilerplate que é usado internamente na Sizebay.
